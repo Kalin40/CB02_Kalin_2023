@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="" />
+</head>
+
+<body>
+    <nav>
+        <input type="color" id="primaryColorSelector">
+        <ul>
+            <div class="nav-left">
+                <a href="/index.html">
+                    <li class="Aa">Aa</li>
+                </a>
+            </div>
+            <div class="nav-right">
+                <li> <a href="/index.html"></li>
+                <li class="Aa">Aa</li>
+                </a>
+                <a href="/index.html">
+                    <li class="Aa">Aa</li>
+                </a>
+                <a href="/index.html">
+                    <li class="Aa">Aa</li>
+                </a>
+            </div>
+        </ul>
+    </nav>
+
+    <header>
+        <section>
+            <div class="p1">
+                <p1>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Vero alias ipsum veniam suscipit possimus quam in vel!
+                </p1>
+            </div>
+
+            <div class="p2">
+                <p2>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Vero alias ipsum veniam suscipit possimus quam in vel!
+                </p2>
+            </div>
+        </section>
+
+        
+        <div class="m">
+            <input type="color" id="primaryColorSelectorM">
+            M
+        </div>
+        
+
+        <section class="box">
+            <input type="range" id="fontSizeSelector" name="volume" min="12" max="38">
+            <div class="box1">
+                <p3>Aa</p3>
+            </div>
+            <div class="box2">
+                <p4>Aa</p4>
+            </div>
+            <div class="box3">
+                <p5>Aa</p5>
+            </div>
+        </section>
+
+
+    </header>
+    <script>
+        document.querySelector("input#primaryColorSelector").oninput = function () {
+            document.querySelector("nav").style.setProperty(
+                "--primary-color",
+                document.querySelector("input#primaryColorSelector").value
+            );
+        };
+
+        document.querySelector("input#primaryColorSelectorM").oninput = function () {
+            document.querySelector("body").style.setProperty(
+                "--primary-colorM",
+                document.querySelector("input#primaryColorSelectorM").value
+            );
+        };
+
+        document.querySelector("input#fontSizeSelector").oninput = function () {
+            document.querySelector("body").style.setProperty(
+                "--font-size",
+                document.querySelector("#fontSizeSelector").value + "pt"
+            );
+        };  
+    </script>
+
+</body>
+
+</html>

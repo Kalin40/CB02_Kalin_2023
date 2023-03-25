@@ -1,0 +1,59 @@
+body {
+  --primary-color: #9f9fca;
+  --font-size: 11rem;
+  padding: 0;
+  margin: 0;
+}
+
+.timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: var(--primary-color);
+}
+
+.display {
+  font-size: var(--font-size);
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.preferences {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.preferences label {
+  font-weight: bold;
+}
+
+.preferences input {
+  width: 3rem;
+}
+
+#stop {
+  background-color: #ff6961;
+  color: white;
+}
+
+#start {
+  background-color: #3b9b48;
+  color: white;
+}
+
+#stop:disabled {
+  background-color: gray;
+  color: white;
+}
+
+#start:disabled {
+  background-color: gray;
+  color: white;
+}

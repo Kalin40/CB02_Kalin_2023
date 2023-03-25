@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="" />
+</head>
+<div class="microwave-oven">
+    <div class="display">
+        <h1>Microwave</h1>
+        <div class="timer">
+            <div class="timing">
+                <span class="minutes">00</span>:<span class="seconds">00</span>
+            </div>
+            <div class="preferences">
+                <label for="minutes">Minutes:</label>
+                <input type="number" id="minutes" min="0" max="60" value="0">
+                <label for="seconds">Seconds:</label>
+                <input type="number" id="seconds" min="0" max="59" value="0">
+            </div>
+        </div>
+        <div class="watts">
+            <p>Watts:</p>
+            <button id="w400">400W</button>
+            <button id="w600">600W</button>
+            <button id="w900">900W</button>
+        </div>
+        <h1>Oven</h1>
+        <div class="Temperature">
+            <p>Temperature:</p>
+            <button id="minus">-</button>
+            <span id="temperature">0 </span>°C</h2>
+            <button id="plus">+</button>
+        </div>
+        <div class="meals">
+            <p>Meals:</p>
+            <button id="chicken">Chicken</button>
+            <button id="pizza">Pizza</button>
+            <button id="regular">Regular</button>
+        </div>
+        <div class="buttons">
+            <button id="start">Start</button>
+            <button id="stop">Stop</button>
+        </div>
+
+    </div>
+    <div class="interior"></div>
+</div>
+<script src="script.js"></script>
+
+</body>
+
+</html>
