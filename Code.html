@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="Pictures/Logo house copy2.svg" alt="My Logo"></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">About me</a></li>
+                <li><a href="UCD.html">UCD</a></li>
+                <li><a href="MP.html">MP</a></li>
+                <li><a href="Code.html">Coding</a></li>
+                <li><a href="Project.html">Project</a></li>
+            </ul>
+            <div class="burger-menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="subjects">
+            <section id="about">
+                <div class="container">
+                    <h2>About programing</h2>
+                    <div class="images-container">
+                        <img src="Pictures/coding.jpg" class="bordered" alt="My Photo 1">
+                    </div>
+                    <p>HTML, CSS, and JavaScript are the core technologies used in web development. HTML (Hypertext
+                        Markup Language) is used for structuring web content, CSS (Cascading Style Sheets) is used for
+                        styling web content, and JavaScript is used for adding interactivity and functionality to web
+                        pages.</p>
+                    <p>HTML provides the foundation for a web page, allowing developers to define the structure and
+                        content of the page using tags and attributes. CSS is then used to style the HTML content,
+                        providing visual design elements such as colors, fonts, and layouts. JavaScript is used to add
+                        dynamic features to the page, such as animations, form validation, and interactive elements.</p>
+                    <p>Overall, HTML, CSS, and JavaScript are the foundation of web development, and mastering these
+                        technologies is key to building effective, functional, and visually appealing websites.</p>
+                </div>
+            </section>
+
+            <section id="Code">
+                <div class="container">
+
+                    <h2>What did we learned</h2>
+                    <p>Short recap what we did at the weeks:</p>
+                    <ul>
+                        <li>This is the main subject where we build our selves. Here we have a lecture every week
+                            about something new, so we build new knowledge every time. We started from html and css and
+                            we
+                            were not allowed to use js. First week we were making simple navigation bar. Second week
+                            we had 3 examples of website and we had to do it the same looking the way we think is good.
+                            Week 3 we had introduction about animation with some advanced examples where at the end
+                            we had to come up with prototype of microwave and also make timer again with pure html and
+                            css. Week 4 we had introduction for js and then the assignment was to work on the microwave
+                            so it can look better and also take one of the examples from week 2 and customize the font
+                            and
+                            the
+                            color with js. Week 5 we were goinf deeper with JS, such as: JS types, the differences
+                            between var let and const, interesting peculiarities of logical operators and The way
+                            arithmetic operators behave when their operands are not numbers </li>
+                    </ul>
+                </div>
+                </div>
+            </section>
+
+            <section id="Code">
+                <div class="container">
+                    <h2>JavaScript types:</h2>
+                    <ul>
+                        <li>JavaScript has six primitive data types: string, number, boolean, null, undefined, and
+                            symbol. Objects in JavaScript are not considered a primitive data type. Instead, they are
+                            complex data types that can hold multiple values of different types. JavaScript uses type
+                            coercion, which means that it will automatically convert data types if necessary. For
+                            example, if you try to add a string and a number together, JavaScript will convert the
+                            number to a string and concatenate them. Type checking in JavaScript can be done using the
+                            typeof operator, which returns a string indicating the type of the operand.</li>
+                    </ul>
+                </div>
+                </div>
+            </section>
+
+            <section id="Code">
+                <div class="container">
+                    <h2>var let and const:</h2>
+                    <ul>
+                        <li>Var has function scope, while let and const have block scope. This means that variables
+                            declared with var are accessible throughout the entire function, while variables declared
+                            with let and const are only accessible within the block they are declared in (e.g. within a
+                            loop, if statement, or curly braces). Var can be redeclared and reassigned, while let can be
+                            reassigned but not redeclared, and const can neither be reassigned nor redeclared. </li>
+                        <li>In general, it's best to use let and const over var in modern JavaScript code, as they
+                            provide better scoping and are more in line with the principle of immutability (i.e. not
+                            changing values once they are assigned). However, there may be cases where var is still
+                            useful, particularly in legacy code or when writing scripts that need to be compatible with
+                            older browsers.</li>
+                    </ul>
+                </div>
+                </div>
+            </section>
+
+            <section id="Code">
+                <div class="container">
+                    <h2>&& , || , and ! </h2>
+                    <ul>
+                        <li>The && operator returns the first falsy value it encounters, or the last truthy value. If
+                            all values are truthy, it returns the last value. For example, 0 && "hello" && false will
+                            return 0, while "hello" && true && 42 will return 42. </li>
+                        <li>The || operator returns the first truthy value it encounters, or the last falsy value. If
+                            all values are falsy, it returns the last value. For example, null || false || undefined
+                            will return undefined, while "hello" || true || 42 will return "hello".</li>
+                        <li>The ! operator is a unary operator that negates a boolean value. If the value is truthy, it
+                            returns false, and if the value is falsy, it returns true.</li>
+                    </ul>
+                </div>
+                </div>
+            </section>
+
+            <section id="Code">
+                <div class="container">
+                    <h2>&& , || , and ! behaving with !numbers </h2>
+                    <ul>
+                        <li>The + operator: If one or both operands are strings, the + operator will perform string
+                            concatenation instead of addition. For example, 5 + "5" will result in the string "55". If
+                            one operand is a string and the other operand is not a string, the non-string operand will
+                            be coerced into a string before the concatenation takes place.</li>
+                        <li>The -, *, /, and % operators: If one or both operands are not numbers, JavaScript will
+                            attempt to convert them to numbers before performing the operation. If the conversion is not
+                            possible, the operation will return NaN (Not a Number). For example, "5" - 2 will result in
+                            the number 3.</li>
+                    </ul>
+                </div>
+                </div>
+            </section>
+
+            <section id="Code">
+                <div class="container">
+                    <h2>== , === , != , and !== </h2>
+                    <ul>
+                        <li>== (loose equality operator) - It checks if the two values are equal in value, but not
+                            necessarily in type. If the types are different, JavaScript will attempt to convert one or
+                            both values to a common type before making the comparison. For example, 1 == "1" would
+                            return true</li>
+                        <li>=== (strict equality operator) - It checks if the two values are equal in both value and
+                            type. If the types are different, the comparison will return false. For example, 1 === "1"
+                            would return false because the types are different.</li>
+                        <li>!= (not equal operator) - It checks if the two values are not equal in value, but not
+                            necessarily in type. If the types are different, JavaScript will attempt to convert one or
+                            both values to a common type before making the comparison. For example, 1 != "2" would
+                            return true because the values are different.</li>
+                        <li>!== (strict not equal operator) - It checks if the two values are not equal in both value
+                            and type. If the types are different, the comparison will return true. For example, 1 !==
+                            "2" would return true because the types are different.</li>
+                    </ul>
+                </div>
+                </div>
+            </section>
+
+            <section id="Code">
+                <div class="container">
+                    <h2>My work</h2>
+                    <ul>
+                        <li>Programming:</li>
+                        <li></li>
+
+                    </ul>
+                </div>
+                </div>
+            </section>
+
+        </section>
+        <button id="dark-mode-btn">Toggle Dark Mode</button>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Kalin Kanev. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+<script src="script.js"></script>
+
+</html>
