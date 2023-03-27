@@ -28,7 +28,7 @@ darkModeBtn.addEventListener("click", () => {
 
 
 document.querySelector('.clickable-sectionUCD').addEventListener('click', function () {
-    window.location.href = 'ucd.html';
+    window.location.href = 'Ucd.html';
 });
 
 document.querySelector('.clickable-sectionMP').addEventListener('click', function () {
@@ -40,5 +40,5 @@ document.querySelector('.clickable-sectionCode').addEventListener('click', funct
 });
 
 document.querySelector('.clickable-sectionProject').addEventListener('click', function () {
-    window.location.href = 'project.html';
+    window.location.href = 'Psroject.html';
 });
