@@ -23,7 +23,7 @@ header {
 
 .logo img {
     position: absolute;
-    left: -50px;
+    left: -60px;
     top: -110px;
     width: 300px;
     height: 300px;
@@ -78,10 +78,25 @@ nav ul li a:hover {
 #bordered {
     width: auto;
     height: 300px;
-    
     border-radius: 10px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
+
+.pacMan-grid-mockUp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+}
+
+.pacManBordered {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 90px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+
 
 #borderedHockey {
     width: 500px;
@@ -98,9 +113,63 @@ nav ul li a:hover {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
+.image-grid-mockUp {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 20px;
+}
+
+.image-wrapper-mockUp {
+    position: relative;
+    padding-bottom: 75%;
+    /* Set the aspect ratio (height/width) of the image */
+}
+
+.mockUp {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    object-fit: cover;
+    /* Scale the image while maintaining its aspect ratio */
+}
+
+.centerPoster {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.poster {
+    border: 2px solid black;
+    border-radius: 10px;
+    /* Adds rounded corners */
+    max-width: 80%;
+    /* Limits the image width to 80% of its container */
+    height: auto;
+    /* Allows the image to scale proportionally */
+}
+
+.rounded {
+    border-radius: 5%;
+    /* Rounds the corners to create a circular shape */
+    overflow: hidden;
+    /* Hides any content outside of the rounded corners */
+}
+
 #abouTitle {
     text-align: center;
     font-size: 35px;
+    font-weight: bold;
+}
+
+#abouTitle1 {
+    text-align: center;
+    font-size: 25px;
     font-weight: bold;
 }
 
@@ -110,8 +179,22 @@ nav ul li a:hover {
     font-size: 20px;
 }
 
-.read{
-    font-size: 30px;
+.read {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.read:hover {
+    background-color: #0056b3;
+    color: #fff;
 }
 
 @media (max-width: 768px) {
@@ -152,6 +235,10 @@ nav ul li a:hover {
 
     .images-container {
         flex-direction: column !important;
+    }
+
+    #scroll-to-top {
+        bottom: 20px;
     }
 }
 
@@ -239,6 +326,11 @@ section {
     margin-right: 20px;
 }
 
+.pointer-cursor {
+    cursor: pointer;
+}
+
+
 #about {
     flex: 1 0 calc(98.33% - 20px);
     background-color: #fff;
@@ -267,7 +359,7 @@ section.subjects {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    
+
 }
 
 /* Dark mode styles */
@@ -280,15 +372,15 @@ body {
     color: #fff;
 }
 
-.dark-mode nav,  
+.dark-mode nav,
 .dark-mode nav a,
-.dark-mode nav ul{
+.dark-mode nav ul {
     color: #353434;
     background-color: #fff;
 }
 
 .dark-mode section,
-.dark-mode #about{
+.dark-mode #about {
     color: #fff;
     background-color: #353434;
 }
@@ -301,8 +393,8 @@ body {
     background-color: #ffffff;
 }
 
-.dark-mode li, 
-.dark-mode ul{
+.dark-mode li,
+.dark-mode ul {
     color: #ffffff;
     text-decoration: none;
     transition: all 0.3s ease;
@@ -337,22 +429,65 @@ body {
     color: #333;
 }
 
-/* Dark mode button styles */
 #dark-mode-btn {
-    background-color: #007bff;
-    color: #fff;
+    background-color: transparent;
+    color: #82a9cb;
     border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 18px;
+    font-size: 20px;
     cursor: pointer;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
+    outline: none;
+    padding: 5px 15px;
+    margin-left: 20px;
+    border-radius: 5px;
+    border: 2px solid #82a9cb;
+    transition: background-color 0.2s ease-in-out;
+    position: relative;
 }
 
 #dark-mode-btn:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+#dark-mode-btn:focus {
+    outline: none;
+}
+
+#dark-mode-btn.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+
+#scroll-to-top {
+    background-color: #4495ed;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+#scroll-to-top .arrow-up {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 7px 10px 7px;
+    border-color: transparent transparent #fff transparent;
+    margin-bottom: 3px;
+}
+
+#scroll-to-top:hover {
     background-color: #0069d9;
+    transform: translateY(-2px);
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Dark mode toggle */
