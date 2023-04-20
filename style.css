@@ -6,7 +6,7 @@
 
 /* Body styles */
 body {
-    font-family: 'Karla', sans-serif;
+    font-family: 'Maven Pro', sans-serif;
     font-size: 16px;
     line-height: 1.4;
     color: #333;
@@ -21,13 +21,22 @@ header {
     background-color: #6a6868;
 }
 
+
+/*Logo color on different modes*/
 .logo img {
     position: absolute;
-    left: -60px;
-    top: -110px;
-    width: 300px;
-    height: 300px;
+    left: -80px;
+    top: -155px;
+    width: 400px;
+    height: 400px;
+    filter: invert(1);
 }
+
+.dark-mode .logo img {
+    filter: invert(0);
+}
+
+/*------------------------------------------------------------------*/
 
 nav {
     display: flex;
@@ -96,7 +105,11 @@ nav ul li a:hover {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-
+.Git {
+    border: 1px solid #ccc;
+    padding: 2px;
+    border-radius: 3px;
+}
 
 #borderedHockey {
     width: 500px;
@@ -439,7 +452,6 @@ body {
     padding: 5px 15px;
     margin-left: 20px;
     border-radius: 5px;
-    border: 2px solid #82a9cb;
     transition: background-color 0.2s ease-in-out;
     position: relative;
 }
