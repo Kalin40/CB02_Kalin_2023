@@ -53,6 +53,29 @@
                 </div>
             </section>
 
+            <section id="about">
+                <div class="container">
+                    <h2>Pacman</h2>
+                    <ul>
+                        <div class="pacMan-grid-mockUp">
+                            <img src="Pictures/photofunky.gif" class="pacManBordered " alt="My Photo 1">
+                        </div>
+                        <p>In this demo you can see a little project for background colour switch by clicking on
+                            different buttons. I have created this colourful assignment using HTML, CSS, and JavaScript.
+                            With this assignment I learned how to user "forEach" and "If"
+                            statements and functions in JavaScriprt
+                        </p>
+                        <button onclick="openModal()" class="PacMan">Play Pacman</button>
+                        <div id="myModal" class="modal">
+                            <div class="modal-content">
+                                <span class="close" onclick="closeModal()">&times;</span>
+                                <iframe src="challenge/Pacman game/index.html" width="100%" height="100%"></iframe>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+            </section>
+
             <section id="Code">
                 <div class="container">
                     <h2>Background color switcher and font</h2>
@@ -102,17 +125,22 @@
 
             <section id="about">
                 <div class="container">
-                    <h2>Pacman</h2>
+                    <h2>Calculator</h2>
                     <ul>
                         <div class="pacMan-grid-mockUp">
-                            <img src="Pictures/photofunky.gif" class="pacManBordered " alt="My Photo 1">
+                            <img src="Pictures/calculater.gif" class="pacManBordered " alt="My Photo 1">
                         </div>
-                        <p>In this demo you can see a little project for background colour switch by clicking on
-                            different buttons. I have created this colourful assignment using HTML, CSS, and JavaScript.
-                            With this assignment I learned how to user "forEach" and "If"
-                            statements and functions in JavaScriprt
+                        <p>The task involved creating functional calculator with a range of basic
+                            mathematical operations using the latest Javascript technologies. As part of this project,
+                            several complex challenges were encountered, including the proper sequence of calculations
+                            and unexpected results while implementing the percentage function. Despite these obstacles,
+                            the final result is a sophisticated and user-friendly calculator that can perform all
+                            essential calculations with ease. The development of this calculator required a new
+                            part of Javascript.
                         </p>
-                        <a href="challenge/Assignment 3/index.html" target="_blank" class="read">Customize me</a>
+                        <div id="calculator-button">
+                            <button class="button-calculate" onclick="openCalculator()">Calculate now</button>
+                        </div>
                     </ul>
                 </div>
             </section>
@@ -170,6 +198,43 @@
                             changing values once they are assigned). However, there may be cases where var is still
                             useful, particularly in legacy code or when writing scripts that need to be compatible with
                             older browsers.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="about">
+                <div class="container">
+                    <h2>New for JS</h2>
+                    <ul>
+                        <li>Arrow functions are a shorthand syntax for creating functions in JavaScript. They can be
+                            used as callback functions in combination with iterative Array methods such as forEach, map,
+                            filter, find, reduce, etc.
+                        </li>
+
+                        <li>
+                            Using arrow functions as callback functions makes the code more concise and easier to
+                            read.<br>
+                            For example, instead of writing:<br>
+                            const numbers = [1, 2, 3, 4, 5];<br>
+                            numbers.forEach(function(number) { console.log(number);
+                            });<br>
+                            We can use an arrow function to make it shorter:<br>
+                            const numbers = [1, 2, 3, 4, 5];<br>
+                            numbers.forEach((number) => {<br>
+                            console.log(number);<br>
+                            });<br>
+                        </li>
+                        <li>
+                            The Array methods such as sort, slice, splice, push, pop, etc. are used for manipulating
+                            arrays in JavaScript.<br>
+                            • sort: used to sort the elements of an array in place.<br>
+                            • slice: used to create a new array that contains a portion of the original array.<br>
+                            • splice: used to add or remove elements from an array at a specific index.<br>
+                            • push: used to add one or more elements to the end of an array.<br>
+                            • pop: used to remove the last element of an array.<br>
+                            By understanding these concepts and methods, we can write more efficient and concise code
+                            when working with arrays in JavaScript.
+                        </li>
                     </ul>
                 </div>
             </section>

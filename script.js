@@ -4,6 +4,8 @@ const toggleIcon = document.querySelector(".toggle-icon");
 const burgerMenu = document.querySelector('.burger-menu');
 const navLinks = document.querySelector('nav ul');
 const navLinksLi = document.querySelectorAll('nav ul li');
+const scrollToTopBtn = document.getElementById("scroll-to-top");
+
 
 /*--------------------------------------------------------------------------*/
 
@@ -44,8 +46,20 @@ darkModeBtn.addEventListener("click", () => {
 
 /*--------------------------------------------------------------------------*/
 
-//Scrool to the top of the page
-const scrollToTopBtn = document.getElementById("scroll-to-top");
+
+// Hide the button on page load
+scrollToTopBtn.style.display = "none";
+
+// When the user scrolls, check if they've scrolled down enough to show the button
+window.addEventListener("scroll", () => {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        scrollToTopBtn.style.display = "block";
+    } else {
+        scrollToTopBtn.style.display = "none";
+    }
+});
+
+// When the button is clicked, scroll to the top of the page
 scrollToTopBtn.addEventListener("click", () => {
     window.scrollTo({
         top: 0,
@@ -74,3 +88,25 @@ document.querySelector('.clickable-sectionProject').addEventListener('click', fu
 });
 
 /*--------------------------------------------------------------------------*/
+
+
+function openModal() {
+    document.getElementById("myModal").style.display = "block";
+}
+
+function closeModal() {
+    document.getElementById("myModal").style.display = "none";
+}
+
+var calculatorWindow;
+
+function openCalculator() {
+    calculatorWindow = window.open("challenge/Calculator/index.html", "Calculator", "width=400,height=500");
+}
+
+function closeCalculator() {
+    calculatorWindow.close();
+}
+
+
+

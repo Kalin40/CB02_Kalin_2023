@@ -26,9 +26,9 @@ header {
 .logo img {
     position: absolute;
     left: -80px;
-    top: -155px;
-    width: 400px;
-    height: 400px;
+    top: -210px;
+    width: 450px;
+    height: 500px;
     filter: invert(1);
 }
 
@@ -38,6 +38,19 @@ header {
 
 /*------------------------------------------------------------------*/
 
+
+/*Padding after the paragraph*/
+p {
+    margin-bottom: 10px;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+/*------------------------------------------------------------------*/
+
+/*Navigation*/
 nav {
     display: flex;
     justify-content: space-between;
@@ -71,6 +84,9 @@ nav ul li a:hover {
     color: #00bcd4;
 }
 
+/*------------------------------------------------------------------*/
+
+/*Burger menu*/
 .burger-menu {
     display: none;
     cursor: pointer;
@@ -83,6 +99,9 @@ nav ul li a:hover {
     margin: 6px 0;
     transition: all 0.3s ease;
 }
+
+/*------------------------------------------------------------------*/
+
 
 #bordered {
     width: auto;
@@ -160,18 +179,32 @@ nav ul li a:hover {
 .poster {
     border: 2px solid black;
     border-radius: 10px;
-    /* Adds rounded corners */
     max-width: 80%;
-    /* Limits the image width to 80% of its container */
     height: auto;
-    /* Allows the image to scale proportionally */
 }
+
+.Toy {
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 400px;
+    height: auto;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+}
+
+.sub-questions {
+    width: 400px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border: 2px solid black;
+}
+
 
 .rounded {
     border-radius: 5%;
-    /* Rounds the corners to create a circular shape */
     overflow: hidden;
-    /* Hides any content outside of the rounded corners */
 }
 
 #abouTitle {
@@ -183,6 +216,11 @@ nav ul li a:hover {
 #abouTitle1 {
     text-align: center;
     font-size: 25px;
+    font-weight: bold;
+}
+
+#UCD-Info {
+    font-size: 18px;
     font-weight: bold;
 }
 
@@ -211,6 +249,52 @@ nav ul li a:hover {
 }
 
 @media (max-width: 768px) {
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #333;
+        padding: 5px 0;
+    }
+
+    nav ul.active {
+        display: flex;
+    }
+
+    nav ul li {
+        margin: 10px;
+    }
+
+    .burger-menu {
+        display: block;
+    }
+
+    .toggle .bar:nth-child(1) {
+        transform: rotate(-45deg) translate(-6px, 6px);
+    }
+
+    .toggle .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .toggle .bar:nth-child(3) {
+        transform: rotate(45deg) translate(-6px, -6px);
+    }
+
+    .images-container {
+        flex-direction: column !important;
+    }
+
+    #scroll-to-top {
+        bottom: 20px;
+    }
+}
+
+
+@media (max-width: 480px) {
     nav ul {
         display: none;
         flex-direction: column;
@@ -544,4 +628,73 @@ body {
 
 .dark-mode .dark-mode-toggle .toggle-icon.active:before {
     transform: translateX(20px);
+}
+
+.PacMan {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.PacMan:hover {
+    background-color: #3e8e41;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    height: 80%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.button-calculate {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.button-calculate:hover {
+    cursor: pointer;
+    background-color: #3e8e41;
 }

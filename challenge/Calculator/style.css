@@ -1,0 +1,81 @@
+button {
+    font-size: 30px;
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
+    border: none;
+    margin: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #c43c89;
+  }
+
+.btn-number {
+    background-color: #fff;
+    color: #666;
+}
+
+.btn-operator {
+    background-color: #f9a825;
+    color: #fff;
+}
+
+.btn-equal {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+.btn-percent {
+    background-color: #2196f3;
+    color: #fff;
+}
+
+.btn-decimal {
+    background-color: #666;
+    color: #fff;
+}
+
+.btn-clear {
+    background-color: #f44336;
+    color: #fff;
+}
+
+#out {
+    width: 100%;
+    max-width: 280px; /* limit the maximum width to 280 pixels */
+    background-color: #ddd;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 36px;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+.Calculator {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    margin: 50px auto;
+    padding: 20px;
+    width: 300px;
+}
+
+.Calculator button {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 20px;
+    margin: 5px;
+    padding: 10px 15px;
+    width: 50px;
+}
+
+.Calculator button.clear {
+    background-color: #c72e2e;
+    color: #fff;
+}

@@ -1,0 +1,123 @@
+body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #1c1c1c;
+    color: #fff;
+    overflow: hidden;
+}
+
+/*Matrix of the game*/
+#display {
+    flex: 1;
+    line-height: 1.25ch;
+    white-space: pre;
+    font-family: monospace;
+    font-size: 2.6vw;
+    color: green;
+    text-align: center;
+    height: 100%;
+}
+
+/*Score of the game*/
+#monitor {
+    width: 15%;
+    background-color: #1c1c1c;
+    color: #fff;
+    font-family: sans-serif;
+    font-size: 2vw;
+    padding: 1.5vw;
+    border: 2px solid #fff;
+    box-shadow: 0 0 20px #fff;
+}
+
+/*Size of the images(pacman, blinky etc.)*/
+img {
+    max-width: 23px;
+    max-height: 23px;
+}
+
+
+#dot-count {
+    margin-top: 3vw;
+    font-size: 2vw;
+    font-weight: bold;
+    text-shadow: 0 2px 3px #ffffff;
+    color: rgba(0, 255, 89, 0.947);
+}
+
+#score {
+    font-size: 3vw;
+    font-weight: bold;
+    text-shadow: 0 1px 5px #fff;
+}
+
+.wall {
+    display: inline-block;
+    background-color: #3e883e;
+    color: #fff;
+    border-radius: 20%;
+    width: 25px;
+    height: 25px;
+}
+
+#game-over {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 80px;
+    font-weight: bold;
+    color: #dd2020;
+    text-shadow: 2px 2px #000;
+    z-index: 9999;
+}
+
+.hidden {
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    body {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #monitor {
+        width: 25%;
+        height: 80px;
+        margin-bottom: 20px;
+        font-size: 16px;
+        padding: 10px;
+        border: 1px solid #fff;
+        box-shadow: 0 0 10px #fff;
+    }
+
+    .wall {
+        width: 15px;
+        height: 15px;
+    }
+
+    img {
+        max-width: 1.5%;
+        max-height: 1.5%;
+    }
+
+    #display {
+        width: 100%;
+        font-size: 3vw;
+        padding: 1.5vw;
+        text-align: center;
+    }
+
+    #dot-count {
+        margin-top: 20px;
+        font-size: 20px;
+    }
+
+    #score {
+        font-size: 5vw;
+    }
+}
