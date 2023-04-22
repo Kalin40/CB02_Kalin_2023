@@ -98,7 +98,7 @@ function movePacman() {
             ny = cRowCount - 1;//teleport from top to bottom
         }
     const destValue = pacmanMatrix[ny][nx];
-    if (destValue != '#') {//good to go(no wall here)
+    if (destValue != '#' && destValue !== '-') {//good to go(no wall here)
         if (destValue == '.') {
             // Increment the dot count
             dotCount++;
@@ -144,8 +144,10 @@ function moveGhost(symbol) {
             return;
         };
         pacmanMatrix[ghostY][ghostX] = ghostLeaveBehind;//now let's place blinky in her the new position
-        ghostY = ny; ghostX = nx;
-        ghostLeaveBehind = pacmanMatrix[ghostY][ghostX] == '.' ? '.' : ' ';// so that next time we move we can leave back what we are seeing to our new location
+        ghostY = ny;
+        ghostX = nx;
+        ghostLeaveBehind = pacmanMatrix[ghostY][ghostX] == '.' ? '.' : (pacmanMatrix[ghostY][ghostX] == '-' ? '-' : ' ');
+
         pacmanMatrix[ghostY][ghostX] = symbol;//now let's place blinky in her the new position
 
         if (ghostX == pacmanX && ghostY == pacmanY) {
@@ -230,7 +232,6 @@ function updateGameState() {
 setInterval(updateGameState, 100);
 
 
-
 let gamepad = null;
 const joystickThreshold = 0.5;
 
@@ -293,8 +294,9 @@ function gameLoop() {
 }
 
 // Joystick input event listener
-window.addEventListener("gamepadconnected", (e) => {
+window.addEventListener("gamepadconnected", function onGamepadConnected(e) {
     gamepad = e.gamepad;
+    window.removeEventListener("gamepadconnected", onGamepadConnected);
 });
 
 // Check for connected gamepads on page load
@@ -304,6 +306,9 @@ if (navigator.getGamepads()[0]) {
 
 // Start the game loop
 requestAnimationFrame(gameLoop);
+
+
+
 
 
 

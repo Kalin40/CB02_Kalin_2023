@@ -91,12 +91,20 @@ document.querySelector('.clickable-sectionProject').addEventListener('click', fu
 
 
 function openModal() {
+    var iframe = document.querySelector("iframe");
+    iframe.src = "challenge/Pacman game/index.html";
+    iframe.removeAttribute("hidden");
     document.getElementById("myModal").style.display = "block";
 }
 
 function closeModal() {
     document.getElementById("myModal").style.display = "none";
+    var iframe = document.querySelector("iframe");
+    iframe.setAttribute("hidden", true);
+    iframe.src = "";
 }
+
+
 
 var calculatorWindow;
 
@@ -107,6 +115,5 @@ function openCalculator() {
 function closeCalculator() {
     calculatorWindow.close();
 }
-
 
 

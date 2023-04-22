@@ -34,8 +34,8 @@ body {
 
 /*Size of the images(pacman, blinky etc.)*/
 img {
-    max-width: 23px;
-    max-height: 23px;
+    width: 28px;
+    height: 25px;
 }
 
 
@@ -101,8 +101,8 @@ img {
     }
 
     img {
-        max-width: 1.5%;
-        max-height: 1.5%;
+        width: 11px;
+        height: auto;
     }
 
     #display {
