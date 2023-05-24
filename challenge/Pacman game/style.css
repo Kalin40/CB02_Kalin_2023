@@ -34,8 +34,8 @@ body {
 
 /*Size of the images(pacman, blinky etc.)*/
 img {
-    width: 28px;
-    height: 25px;
+    width: 1.4vw;
+    height: 1.4vw;
 }
 
 
@@ -53,17 +53,17 @@ img {
     text-shadow: 0 1px 5px #fff;
 }
 
-.wall {
+/*.wall {
     display: inline-block;
     background-color: #3e883e;
     color: #fff;
     border-radius: 20%;
     width: 25px;
     height: 25px;
-}
+}*/
 
 #game-over {
-    position: fixed;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -72,10 +72,35 @@ img {
     color: #dd2020;
     text-shadow: 2px 2px #000;
     z-index: 9999;
+    cursor: pointer;
+    /* Cursor style when hovering */
 }
 
 .hidden {
     display: none;
+}
+
+.left {
+    -moz-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    transform: scale(-1, 1);
+}
+
+.up {
+    -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    transform: rotate(270deg);
+}
+
+.down {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
 }
 
 @media only screen and (max-width: 768px) {
@@ -119,5 +144,10 @@ img {
 
     #score {
         font-size: 5vw;
+    }
+
+    #game-over {
+        font-size: 60px;
+        /* Adjust the font size as desired */
     }
 }

@@ -1,5 +1,5 @@
 /*Our matrix for the game*/
-pacmanMatrix = [
+const pacmanMatrix = [
     ['#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#'], //rowIndex=0 (y=0)
     ['#', ' ', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#', '#', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#'], //rowIndex=1 (y=1)
     ['#', '.', '#', '#', '#', '#', '.', '#', '#', '#', '#', '#', '.', '#', '#', '.', '#', '#', '#', '#', '#', '.', '#', '#', '#', '#', '.', '#'],
@@ -28,8 +28,25 @@ pacmanMatrix = [
     ['#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#']
 ];
 
+const GAME_FPS = 8;
+
 const cRowCount = pacmanMatrix.length;
 const cColCount = pacmanMatrix[0].length;
+
+function getPacmanDirectionClass() {
+    // left right up down
+    if (pacmanDx === 1) {
+        return 'right';
+    } else if (pacmanDx === -1) {
+        return 'left';
+    } else if (pacmanDy === -1) {
+        return 'up';
+    } else if (pacmanDy === 1) {
+        return 'down';
+    }
+
+    return '';
+}
 
 /*
     renders the pacman Matrix on the display 
@@ -45,8 +62,8 @@ function renderState() {
         for (let colIndex = 0; colIndex < rowValues.length; colIndex++) {
             let glyph, value = rowValues[colIndex];
             switch (value) {
-                case 'PacMan':
-                    glyph = `<span class="mrPacMan"><img src="pacman.png"></span>`;
+                case 'PacMan': // Not triggering...
+                    glyph = `<span class="mrPacMan ${getPacmanDirectionClass()}"><img src="pacman.png"></span>`;
                     break;
                 case 'Blinky':
                     glyph = '<span class="msBlinky"><img src="blinky.png" /></span>';
@@ -73,48 +90,129 @@ function renderState() {
     document.querySelector('#display').innerHTML = output;
 }
 
+function isNextMoveValid(targetX, targetY) {
+    const targetValue = pacmanMatrix[targetY][targetX];
+    return targetValue !== '#' && targetValue !== '-';
+}
 
-window.addEventListener('load', function () {
-    var audio = new Audio('Intro.mp3');
-    audio.play();
-});
+function movePacmanOnMatrix(targetX, targetY, onMoveComplete) {
+    const targetValue = pacmanMatrix[targetY][targetX];
+    if (targetValue === '.') {
+        // Increment the dot count
+        dotCount++;
+        // Update the dot count in monitor 
+        var dotCountElement = document.getElementById('dot-count');
+        dotCountElement.innerHTML = 'Points: ' + dotCount;
 
-//mr Pacman
-var pacmanX = 1, pacmanY = 1, pacmanDx = 0, pacmanDy = 0;
+        // Play the sound effect
+        var audio = new Audio('Fruit.mp3');
+        audio.play();
+    }
+
+    // execute a callback if move is complete
+    if (onMoveComplete) {
+        onMoveComplete({ pacmanX, pacmanY, targetX, targetY });
+    }
+
+    pacmanMatrix[pacmanY][pacmanX] = ' ';//leave behind us an empty block
+    pacmanX = targetX; pacmanY = targetY;
+    pacmanMatrix[targetY][targetX] = `<img class="${getPacmanDirectionClass()}" src="pacman.png" />`;//now let's place Pacman to the new position
+}
+
+//mr Pacman 
+var pacmanX = 1, pacmanY = 1, pacmanDx = 0, pacmanDy = 0, pendingMove = null;
+pacmanMatrix[pacmanY][pacmanX] = `<img class="${getPacmanDirectionClass()}" src="pacman.png" />`;
 var dotCount = 0;
 function movePacman() {
-    let nx = pacmanX + pacmanDx; //nx is the desired column index
-    let ny = pacmanY + pacmanDy; //ny is the desired row index
+    let nx;
+    let ny;
+
+    if (pendingMove) {
+        nx = pacmanX + pendingMove.destX;
+        ny = pacmanY + pendingMove.destY;
+    } else {
+        nx = pacmanX + pacmanDx; //nx is the desired column index
+        ny = pacmanY + pacmanDy; //ny is the desired row index
+    }
+
     if (nx >= cColCount) {
         nx = 0;//teleport from right to left
-    } else
-        if (nx < 0) {
-            nx = cColCount - 1;//teleport from left to right
-        };
+    } else if (nx < 0) {
+        nx = cColCount - 1;//teleport from left to right
+    }
+
     if (ny >= cRowCount) {
         ny = 0;//teleport from bottom to top
-    } else
-        if (ny < 0) {
-            ny = cRowCount - 1;//teleport from top to bottom
-        }
-    const destValue = pacmanMatrix[ny][nx];
-    if (destValue != '#' && destValue !== '-') {//good to go(no wall here)
-        if (destValue == '.') {
-            // Increment the dot count
-            dotCount++;
-            // Update the dot count in monitor 
-            var dotCountElement = document.getElementById('dot-count');
-            dotCountElement.innerHTML = 'Points: ' + dotCount;
-
-            // Play the sound effect
-            var audio = new Audio('Fruit.mp3');
-            audio.play();
-        }
-        pacmanMatrix[pacmanY][pacmanX] = ' ';//leave behind us an empty block
-        pacmanX = nx; pacmanY = ny;
-        pacmanMatrix[pacmanY][pacmanX] = '<img src="pacman.png">';//now let's place Pacman to the new position
+    } else if (ny < 0) {
+        ny = cRowCount - 1;//teleport from top to bottom
     }
+
+    if (isNextMoveValid(nx, ny)) {
+        movePacmanOnMatrix(nx, ny, () => {
+            if (pendingMove) { // likely this is an always true if check, debug and find out...
+                pacmanDx = pendingMove.destX;
+                pacmanDy = pendingMove.destY;
+                pendingMove = null;
+            }
+        })
+    } else {
+        nx = pacmanX + pacmanDx; //nx is the desired column index
+        ny = pacmanY + pacmanDy; //ny is the desired row index
+
+        if (isNextMoveValid(nx, ny)) {
+            movePacmanOnMatrix(nx, ny);
+        }
+    }
+
+    // const destValue = pacmanMatrix[ny][nx];
+    // if (destValue !== '#' && destValue !== '-') {//good to go(no wall here)
+    //     if (destValue === '.') {
+    //         // Increment the dot count
+    //         dotCount++;
+    //         // Update the dot count in monitor 
+    //         var dotCountElement = document.getElementById('dot-count');
+    //         dotCountElement.innerHTML = 'Points: ' + dotCount;
+
+    //         // Play the sound effect
+    //         var audio = new Audio('Fruit.mp3');
+    //         audio.play();
+    //     }
+
+    //     // execute the pending move
+    //     if (pendingMove) {
+    //         pacmanDx = pendingMove.destX;
+    //         pacmanDy = pendingMove.destY;
+    //         pendingMove = null;
+    //     }
+
+    //     pacmanMatrix[pacmanY][pacmanX] = ' ';//leave behind us an empty block
+    //     pacmanX = nx; pacmanY = ny;
+    //     pacmanMatrix[pacmanY][pacmanX] = '<img src="pacman.png">';//now let's place Pacman to the new position
+    // } else {
+    //     nx = pacmanX + pacmanDx; //nx is the desired column index
+    //     ny = pacmanY + pacmanDy; //ny is the desired row index
+    //     const backupDestValue = pacmanMatrix[ny][nx];
+    //     if (backupDestValue !== '#' && backupDestValue !== '-') {//good to go(no wall here)
+    //         if (backupDestValue === '.') {
+    //             // Increment the dot count
+    //             dotCount++;
+    //             // Update the dot count in monitor 
+    //             var dotCountElement = document.getElementById('dot-count');
+    //             dotCountElement.innerHTML = 'Points: ' + dotCount;
+
+    //             // Play the sound effect
+    //             var audio = new Audio('Fruit.mp3');
+    //             audio.play();
+    //         }
+
+    //         pacmanMatrix[pacmanY][pacmanX] = ' ';//leave behind us an empty block
+    //         pacmanX = nx; pacmanY = ny;
+    //         pacmanMatrix[pacmanY][pacmanX] = '<img src="pacman.png">';//now let's place Pacman to the new position
+    //     } 
+    // }
 }
+
+
 
 
 //function makeGhostMoveAI(symbol) {
@@ -151,9 +249,11 @@ function moveGhost(symbol) {
         pacmanMatrix[ghostY][ghostX] = symbol;//now let's place blinky in her the new position
 
         if (ghostX == pacmanX && ghostY == pacmanY) {
+            gameOver = true;
             let message = document.getElementById("game-over"); // Get the game over message element
             message.classList.remove("hidden"); // Remove the "hidden" class to display the message
-            //new Audio('Death.mp3').play(); // Play the Death.mp3 sound
+            message.addEventListener("click", restartGame);
+            new Audio('Death.mp3').play(); // Play the Death.mp3 sound
         }
 
 
@@ -166,8 +266,6 @@ function moveGhost(symbol) {
     }
 
 }
-
-
 
 function ghostChangeDirection() {
     //change the orientation of direction 
@@ -192,7 +290,7 @@ function ghostCanSeePacman(lookDirX, lookDirY) {
         if (value == '#') {//end of sight (blinky is seeing a wall)
             return false;
         };
-        if (value == '<img src="pacman.png">') {//pacman is visible in this direction
+        if (value.includes('pacman.png')) {//pacman is visible in this direction
             return true;
         }
     };
@@ -216,99 +314,140 @@ function ghostFollowPacmanIfPossible() {
 //moveGhost();
 //}
 
-var gamePaused = false;
+var gamePaused = true;
+var gameOver = false;
 function updateGameState() {
     if (gamePaused) {
+        renderState(); // Render the game state even when paused
         return;
-    };
-    movePacman();
-    moveGhost('Blinky');
-    //moveGhost('Inky');
-    //moveGhost('Pinky');
-    renderState();
-
-}
-
-setInterval(updateGameState, 100);
-
-
-let gamepad = null;
-const joystickThreshold = 0.5;
-
-// Game loop to handle gamepad and arrow key input
-function gameLoop() {
-    // Check for gamepad input
-    if (gamepad) {
-        const dx = gamepad.axes[0];
-        const dy = gamepad.axes[1];
-        if (Math.abs(dx) > joystickThreshold) {
-            pacmanDx = dx > 0 ? 1 : -1;
-            pacmanDy = 0;
-        } else if (Math.abs(dy) > joystickThreshold) {
-            pacmanDx = 0;
-            pacmanDy = dy > 0 ? 1 : -1;
-        } else {
-            pacmanDx = 0;
-            pacmanDy = 0;
-        }
-
-        if (gamepad.buttons[0].pressed) { // button A
-            pacmanDx = 0;
-            pacmanDy = 1;
-        } else if (gamepad.buttons[1].pressed) { // button B
-            pacmanDx = 1;
-            pacmanDy = 0;
-        } else if (gamepad.buttons[2].pressed) { // button X
-            pacmanDx = -1;
-            pacmanDy = 0;
-        } else if (gamepad.buttons[3].pressed) { // button Y
-            pacmanDx = 0;
-            pacmanDy = -1;
-        }
     }
 
+    if (gameOver) {
+        // Handle game over logic
+        renderState(); // Render the game state
+        return;
+    }
+
+    movePacman();
+    moveGhost('Blinky');
+    // moveGhost('Inky');
+    // moveGhost('Pinky');
+    renderState();
+}
+
+function restartGame() {
+    location.reload(); // Reload the page to restart the game
+}
+
+
+function moveTo(destX, destY) {
+    if (gameOver) {
+        return; // Do not move Pac-Man if game is over
+    }
+
+    // Rest of the code to move Pac-Man
+    console.log({ pacmanDx, pacmanDy, destX, destY });
+    pendingMove = { destX, destY };
+    gamePaused = false; // Unpause the game on first move
+}
+
+function keyboardMovementListener() {
     // Check for arrow key input
-    document.addEventListener("keydown", function (event) {
-        switch (event.key) {
-            case "ArrowLeft":
-                pacmanDx = -1;
-                pacmanDy = 0;
-                break;
-            case "ArrowRight":
-                pacmanDx = 1;
-                pacmanDy = 0;
-                break;
-            case "ArrowUp":
-                pacmanDx = 0;
-                pacmanDy = -1;
-                break;
-            case "ArrowDown":
-                pacmanDx = 0;
-                pacmanDy = 1;
-                break;
+    document.addEventListener("keydown", (event) => {
+        if (gamePaused) {
+            gamePaused = false; // Unpause the game on arrow key press
+            playIntroSound();
+        } else if (!gameOver) {
+            switch (event.key) {
+                case "ArrowLeft":
+                    moveTo(-1, 0);
+                    break;
+                case "ArrowRight":
+                    moveTo(1, 0);
+                    break;
+                case "ArrowUp":
+                    moveTo(0, -1);
+                    break;
+                case "ArrowDown":
+                    moveTo(0, 1);
+                    break;
+            }
+        }
+    });
+}
+
+function gamepadMovementListener() {
+    let gamepad = null;
+    let prevGamepadAxes = [0, 0, 0, 0];
+
+    const gamepadLoop = () => requestAnimationFrame(() => {
+        const gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : [])
+        if (gamepads.length > 0) {
+            gamepad = gamepads[0];
+        } else if (gamepad) {
+            gamepad.connected = false;
+        }
+
+        if (gamepad?.connected) {
+            if (Math.round(gamepad.axes[0]) !== Math.round(prevGamepadAxes[0])
+                || Math.round(gamepad.axes[1]) !== Math.round(prevGamepadAxes[1])
+                || Math.round(gamepad.axes[2]) !== Math.round(prevGamepadAxes[2])
+                || Math.round(gamepad.axes[3]) !== Math.round(prevGamepadAxes[3])) {
+
+                console.log('gamepad', gamepad);
+
+                prevGamepadAxes = gamepad.axes;
+
+                const gamepadDestX = Math.round(gamepad.axes[0]);
+                const gamepadDestY = Math.round(gamepad.axes[1]);
+
+                if (!!gamepadDestX || !!gamepadDestY) {
+                    moveTo(gamepadDestX, gamepadDestY);
+                }
+            }
+
+            gamepadLoop();
         }
     });
 
-    // Request the next frame of animation
-    requestAnimationFrame(gameLoop);
+    const onGamepadConnected = (e) => {
+        if (gamePaused) {
+            gamePaused = false; // Unpause the game on gamepad connection
+            playIntroSound();
+        }
+
+        gamepadLoop();
+    }
+
+    const onGamepadDisconnected = (e) => {
+        // console.log('onGamepadDisconnectedEvent', e);
+        gamepad = e.gamepad;
+    }
+
+    window.addEventListener("gamepadconnected", onGamepadConnected);
+    window.addEventListener("gamepaddisconnected", onGamepadDisconnected);
 }
 
-// Joystick input event listener
-window.addEventListener("gamepadconnected", function onGamepadConnected(e) {
-    gamepad = e.gamepad;
-    window.removeEventListener("gamepadconnected", onGamepadConnected);
-});
-
-// Check for connected gamepads on page load
-if (navigator.getGamepads()[0]) {
-    gamepad = navigator.getGamepads()[0];
+function initiateListeners() {
+    gamepadMovementListener();
+    keyboardMovementListener();
 }
 
-// Start the game loop
-requestAnimationFrame(gameLoop);
 
+function playIntroSound() {
+    var audio = new Audio('Intro.mp3');
+    audio.play();
+}
 
+function init() {
+    // Start the game loops
+    setInterval(updateGameState, (1000 / GAME_FPS));
 
+    // Start the movement listeners
+    initiateListeners();
+}
+
+init();
 
 
 
