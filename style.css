@@ -464,11 +464,14 @@ body {
     background-color: #fff;
 }
 
+/* Remove or modify one of the .dark-mode definitions */
 .dark-mode {
+    /* Styles for dark mode */
     background-color: #333;
     color: #fff;
 }
 
+/* Keep the remaining styles for dark mode */
 .dark-mode nav,
 .dark-mode nav a,
 .dark-mode nav ul {

@@ -94,8 +94,24 @@ function openModal() {
     var iframe = document.querySelector("iframe");
     iframe.src = "challenge/Pacman game/index.html";
     iframe.removeAttribute("hidden");
+
+    // Add an event listener to the iframe's document
+    iframe.addEventListener("load", function () {
+        // Get the iframe's document
+        var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+
+        // Add event listeners for the arrow keys
+        iframeDocument.addEventListener("keydown", function (event) {
+            if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+                event.preventDefault(); // Prevent the default behavior (scrolling)
+            }
+        });
+    });
+
     document.getElementById("myModal").style.display = "block";
 }
+
+
 
 function closeModal() {
     document.getElementById("myModal").style.display = "none";
