@@ -1,4 +1,5 @@
 const display = document.querySelector('.timing');
+const interior = document.querySelector('.interior');
 const plusButton = document.getElementById("plus");
 const minusButton = document.getElementById("minus");
 const numberSpan = document.getElementById("temperature");
@@ -7,136 +8,183 @@ const stopButton = document.querySelector('#stop');
 const minutesInput = document.querySelector('#minutes');
 const secondsInput = document.querySelector('#seconds');
 
-const w500Button = document.querySelector('#w500');
-const w700Button = document.querySelector('#w700');
-const w1000Button = document.querySelector('#w1000');
+const w400Button = document.querySelector('#w400');
+const w600Button = document.querySelector('#w600');
+const w900Button = document.querySelector('#w900');
 
 const chickenButton = document.querySelector('#chicken');
 const pizzaButton = document.querySelector('#pizza');
 const regularButton = document.querySelector('#regular');
 
-const interior = document.querySelector('.interior');
-
-let time = 0;
-let watts = 0;
-let meal = '';
 let countdown;
 let number = 0;
+let wattOption = '';
+let mealOption = '';
+let timeSelected = false;
+let wattsSelected = false;
+let usingOven = false;
 
 function timer(seconds) {
-    clearInterval(countdown);
+  clearInterval(countdown);
 
-    const now = Date.now();
-    const then = now + seconds * 1000;
+  const now = Date.now();
+  const then = now + seconds * 1000;
 
-    displayTimeLeft(seconds);
+  displayTimeLeft(seconds);
 
-    countdown = setInterval(() => {
-        const secondsLeft = Math.round((then - Date.now()) / 1000);
+  countdown = setInterval(() => {
+    const secondsLeft = Math.round((then - Date.now()) / 1000);
 
-        if (secondsLeft < 0) {
-            clearInterval(countdown);
-            return;
-        }
+    if (secondsLeft < 0) {
+      clearInterval(countdown);
+      return;
+    }
 
-        displayTimeLeft(secondsLeft);
-    }, 1000);
+    displayTimeLeft(secondsLeft);
+  }, 1000);
 }
 
 function displayTimeLeft(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
 
-    const displayMinutes = `${minutes < 10 ? '0' : ''}${minutes}`;
-    const displaySeconds = `${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+  const displayMinutes = `${minutes < 10 ? '0' : ''}${minutes}`;
+  const displaySeconds = `${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
 
-    display.textContent = `${displayMinutes}:${displaySeconds}`;
+  display.textContent = `${displayMinutes}:${displaySeconds}`;
 }
 
 function startTimer() {
-    const minutes = parseInt(minutesInput.value);
-    const seconds = parseInt(secondsInput.value);
-    const totalSeconds = minutes * 60 + seconds;
+  const minutes = parseInt(minutesInput.value);
+  const seconds = parseInt(secondsInput.value);
+  const totalSeconds = minutes * 60 + seconds;
 
-    if (!totalSeconds) {
-        return;
-    }
+  if (!totalSeconds) {
+    alert('Please select a time option.');
+    return;
+  }
 
-    timer(totalSeconds);
+  if (!wattOption || !mealOption) {
+    alert('Please select a watt option and a meal option.');
+    return;
+  }
 
-    startButton.disabled = true;
-    minutesInput.disabled = true;
-    secondsInput.disabled = true;
-    stopButton.disabled = false;
+  timer(totalSeconds);
+
+  startButton.disabled = true;
+  minutesInput.disabled = true;
+  secondsInput.disabled = true;
+  stopButton.disabled = false;
+
+  interior.classList.add('yellow');
 }
 
 function stopTimer() {
-    clearInterval(countdown);
+  clearInterval(countdown);
 
-    startButton.disabled = false;
-    minutesInput.disabled = false;
-    secondsInput.disabled = false;
-    stopButton.disabled = true;
+  startButton.disabled = false;
+  minutesInput.disabled = false;
+  secondsInput.disabled = false;
+  stopButton.disabled = true;
+
+  interior.classList.remove('yellow');
 }
 
+function selectWattOption(option) {
+  wattOption = option;
+  w400Button.classList.remove('selected');
+  w600Button.classList.remove('selected');
+  w900Button.classList.remove('selected');
+  option.classList.add('selected');
+  wattsSelected = true;
+  checkStartButtonState();
+}
 
-/*
-w500Button.addEventListener('click', () => {
-  watts = 500;
-});
+function selectMealOption(option) {
+  mealOption = option;
+  chickenButton.classList.remove('selected');
+  pizzaButton.classList.remove('selected');
+  regularButton.classList.remove('selected');
+  option.classList.add('selected');
+  usingOven = true;
+  checkStartButtonState();
+}
 
-w700Button.addEventListener('click', () => {
-  watts = 700;
-});
+function checkStartButtonState() {
+  if ((timeSelected && (wattsSelected || mealOption)) || (usingOven && mealOption)) {
+    startButton.disabled = false;
+  } else {
+    startButton.disabled = true;
+  }
+}
 
-w1000Button.addEventListener('click', () => {
-  watts = 1000;
-});
-
-chickenButton.addEventListener('click', () => {
-  meal = 'Chicken';
-});
-
-pizzaButton.addEventListener('click', () => {
-  meal = 'Pizza';
-});
-
-popcornButton.addEventListener('click', () => {
-  meal = 'Popcorn';
-});
-
-startButton.addEventListener('click', () => {
-  if (time > 0 && watts > '' && meal !== '') {
-    interior.classList.add('light-on');
-    setTimeout(() => {
-      interior.classList.remove('light-on');
-    }, time * 1000);
+w400Button.addEventListener('click', () => {
+  if (!timeSelected && !usingOven) {
+    selectWattOption(w400Button);
   }
 });
 
-*/
-
-plusButton.addEventListener("click", () => {
-    if (number < 280) {
-        number += 15;
-        if (number > 280) {
-            number = 280;
-        }
-        numberSpan.innerText = number;
-    }
+w600Button.addEventListener('click', () => {
+  if (!timeSelected && !usingOven) {
+    selectWattOption(w600Button);
+  }
 });
 
-minusButton.addEventListener("click", () => {
+w900Button.addEventListener('click', () => {
+  if (!timeSelected && !usingOven) {
+    selectWattOption(w900Button);
+  }
+});
+
+minusButton.addEventListener('click', () => {
+  if (!timeSelected && !usingOven) {
     if (number > 0) {
-        number -= 15;
-        if (number < 0) {
-            number = 0;
-        }
-        numberSpan.innerText = number;
+      number -= 15;
+      if (number < 0) {
+        number = 0;
+      }
+      numberSpan.innerText = number;
     }
+  }
 });
 
-numberSpan.innerText = number;
+plusButton.addEventListener('click', () => {
+  if (!timeSelected && !usingOven) {
+    if (number < 280) {
+      number += 15;
+      if (number > 280) {
+        number = 280;
+      }
+      numberSpan.innerText = number;
+    }
+  }
+});
+
+chickenButton.addEventListener('click', () => {
+  if (startButton.disabled) {
+    selectMealOption(chickenButton);
+  }
+});
+
+pizzaButton.addEventListener('click', () => {
+  if (startButton.disabled) {
+    selectMealOption(pizzaButton);
+  }
+});
+
+regularButton.addEventListener('click', () => {
+  if (startButton.disabled) {
+    selectMealOption(regularButton);
+  }
+});
+
+w400Button.addEventListener('click', () => selectWattOption(w400Button));
+w600Button.addEventListener('click', () => selectWattOption(w600Button));
+w900Button.addEventListener('click', () => selectWattOption(w900Button));
+
+chickenButton.addEventListener('click', () => selectMealOption(chickenButton));
+pizzaButton.addEventListener('click', () => selectMealOption(pizzaButton));
+regularButton.addEventListener('click', () => selectMealOption(regularButton));
 
 startButton.addEventListener('click', startTimer);
 stopButton.addEventListener('click', stopTimer);

@@ -28,7 +28,7 @@
     width: 50%;
 }
 
-.timing{
+.timing {
     color: rgb(46, 43, 213);
     font-size: 2em;
 }
@@ -36,14 +36,19 @@
 .preferences {
     gap: 1rem;
     width: 10%;
-  }
-  
+}
+
 
 .watts,
 .meals {
     display: flex;
     justify-content: space-between;
     width: 50%;
+}
+
+.selected {
+    background-color: rgb(147, 221, 104);
+    color: black;
 }
 
 button {
@@ -66,7 +71,7 @@ button:hover {
     background-color: #555;
 }
 
-#temperature{
+#temperature {
     font-size: 20px;
 }
 
@@ -78,30 +83,29 @@ button:hover {
     margin-top: -49%;
     margin-left: 50%;
     width: 50%;
+    transition: background-color 0.5s ease;
 }
 
-.light-on {
-    background-color: rgba(255, 255, 255, 0.5);
+.interior.yellow {
+    background-color: yellow;
 }
 
 #stop {
     background-color: #ff6961;
     color: white;
-  }
-  
-  #start {
+}
+
+#start {
     background-color: #3b9b48;
     color: white;
-  }
-  
-  #stop:disabled {
-    background-color: gray;
-    color: white;
-  }
-  
-  #start:disabled {
-    background-color: gray;
-    color: white;
-  }
+}
 
- 
+#stop:disabled {
+    background-color: gray;
+    color: white;
+}
+
+#start:disabled {
+    background-color: gray;
+    color: white;
+}
