@@ -63,14 +63,23 @@
                         <p>The Pacman game was a challenging project that allowed me to develop my skills in game
                             development and explore new programming techniques. During the project, I encountered
                             several difficulties, including implementing the movement of the ghosts and Pacman, as well
-                            as creating a joystick control that is still in progress. Despite these challenges, I was
-                            able to create a fully
-                            functional game that includes features such as sound effects, a game over screen, and a
-                            score system but I can make it even better with more time and trying new stuff. Through this
-                            project, I was able to gain a deeper understanding of programming
-                            concepts and explore new techniques. I'm excited to continue improving and expanding on this
-                            project in the future.
-                        </p>
+                            as creating joystick controls.</p>
+                        <p>To address the issue of the non-working joystick, I made significant changes to the code.
+                            Instead of relying on the joystick alone, I created two separate functions: one for arrow
+                            key controls and another for gamepad controls. This allowed me to provide alternative
+                            control options for players.</p>
+                        <p>By implementing these functions, I was able to make the joystick fully functional, enabling
+                            players to control Pacman smoothly using the joystick's input. I also took the opportunity
+                            to dive deeper into the API documentation for the joystick, understanding its
+                            functionalities and how to integrate it seamlessly into the game.</p>
+                        <p>Alongside the joystick functionality, I successfully incorporated other features into the
+                            game, such as sound effects, a game over screen, and a score system. These additions
+                            enhanced the overall gameplay experience.</p>
+                        <p>Completing this project provided me with a valuable learning experience. I deepened my
+                            understanding of programming concepts and explored new techniques specific to game
+                            development. I'm enthusiastic about the potential for further improvement and expansion of
+                            this project in the future, as I continue to explore new ideas and incorporate them into the
+                            game.</p>
                         <button onclick="openModal()" class="PacMan">Play Pacman</button>
                         <div id="myModal" class="modal">
                             <div class="modal-content">
@@ -134,22 +143,16 @@
             <section id="about">
                 <div class="container">
                     <h2>Calculator</h2>
-                    <ul>
-                        <div class="pacMan-grid-mockUp">
-                            <img src="Pictures/calculater.gif" class="pacManBordered " alt="My Photo 1">
-                        </div>
-                        <p>The task involved creating functional calculator with a range of basic
-                            mathematical operations using the latest Javascript technologies. As part of this project,
-                            several complex challenges were encountered, including the proper sequence of calculations
-                            and unexpected results while implementing the percentage function. Despite these obstacles,
-                            the final result is a sophisticated and user-friendly calculator that can perform all
-                            essential calculations with ease. The development of this calculator required a new
-                            part of Javascript.
-                        </p>
-                        <div id="calculator-button">
-                            <button class="button-calculate" onclick="openCalculator()">Calculate now</button>
-                        </div>
-                    </ul>
+                    <div class="calculator-container">
+                        <iframe src="challenge/Calculator/index.html" class="calculator-frame"
+                            title="Calculator"></iframe>
+                    </div>
+                    <p>The task involved creating a functional calculator with a range of basic mathematical operations
+                        using the latest JavaScript technologies. As part of this project, several complex challenges
+                        were encountered, including the proper sequence of calculations and unexpected results while
+                        implementing the percentage function. Despite these obstacles, the final result is a
+                        sophisticated and user-friendly calculator that can perform all essential calculations with
+                        ease. The development of this calculator required a new part of JavaScript.</p>
                 </div>
             </section>
 
