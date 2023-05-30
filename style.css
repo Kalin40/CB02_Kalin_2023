@@ -305,7 +305,6 @@ nav ul li a:hover {
 
 @media (max-width: 480px) {
     nav ul {
-        display: none;
         flex-direction: column;
         position: absolute;
         top: 100%;
