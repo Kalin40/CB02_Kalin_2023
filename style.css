@@ -313,14 +313,6 @@ nav ul li a:hover {
         padding: 5px 0;
     }
 
-    nav ul.active {
-        display: flex;
-    }
-
-    nav ul li {
-        margin: 10px;
-    }
-
     .burger-menu {
         display: block !important;
     }
