@@ -218,6 +218,12 @@ function movePacman() {
 //function makeGhostMoveAI(symbol) {
 //Ghost
 var ghostX = (cColCount / 2) | 0, ghostY = (cRowCount / 2) | 0, ghostDx = 0, ghostDy = -1, ghostLeaveBehind = '-', ghostStepCount = 0;
+// function createGhosts() {
+//     moveGhost('Blinky', 'blinky.png'); // Move Blinky ghost with the image 'blinky.png'
+//     moveGhost('Pinky', 'pinky.png'); // Move Pinky ghost with the image 'pinky.png'
+//     moveGhost('Inky', 'inky.png'); // Move Inky ghost with the image 'inky.png'
+// }
+
 function moveGhost(symbol) {
     let nx = ghostX + ghostDx; //nx is the desired column index
     let ny = ghostY + ghostDy; //ny is the desired row index
@@ -248,13 +254,17 @@ function moveGhost(symbol) {
 
         pacmanMatrix[ghostY][ghostX] = symbol;//now let's place blinky in her the new position
 
-        if (ghostX == pacmanX && ghostY == pacmanY) {
+        // Get the "Game Over" message element
+        const message = document.getElementById("game-over");
+
+        if (ghostX === pacmanX && ghostY === pacmanY) {
             gameOver = true;
-            let message = document.getElementById("game-over"); // Get the game over message element
-            message.classList.remove("hidden"); // Remove the "hidden" class to display the message
+            message.classList.add("active"); // Add the "active" class to display the message and start the blinking effect
             message.addEventListener("click", restartGame);
             new Audio('Death.mp3').play(); // Play the Death.mp3 sound
         }
+
+
 
 
     } else {//blinky can not move to the desired position			
@@ -329,6 +339,7 @@ function updateGameState() {
     }
 
     movePacman();
+    //  createGhosts();
     moveGhost('Blinky');
     // moveGhost('Inky');
     // moveGhost('Pinky');

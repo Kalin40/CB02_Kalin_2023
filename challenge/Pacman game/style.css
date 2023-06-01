@@ -69,12 +69,39 @@ img {
     transform: translate(-50%, -50%);
     font-size: 80px;
     font-weight: bold;
-    color: #dd2020;
+    color:  #E0115F;
     text-shadow: 2px 2px #000;
     z-index: 9999;
     cursor: pointer;
-    /* Cursor style when hovering */
+    /* Initial hidden state */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
 }
+
+#game-over.active {
+    /* Display the message and make it flash */
+    opacity: 1;
+    animation: flash 0.5s infinite alternate;
+}
+
+#game-over:hover {
+    /* Stop the blinking animation when hovering */
+    animation: none;
+    opacity: 1;
+}
+
+@keyframes flash {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+
+
 
 .hidden {
     display: none;
