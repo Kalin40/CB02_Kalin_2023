@@ -343,10 +343,10 @@ nav ul li a:hover {
     }
 
     #scroll-to-top {
-        font-size: 24px;
+        font-size: 20px;
         width: 35px;
         height: 35px;
-        line-height: 30px;
+        line-height: 35px;
         border-radius: 50%;
     }
 
@@ -471,6 +471,15 @@ nav ul li a:hover {
         width: 550px;
         height: auto;
         margin-bottom: 10px;
+    }
+
+    .logo img {
+        position: absolute;
+        left: -80px;
+        top: -210px;
+        width: 450px;
+        height: 500px;
+        filter: invert(1);
     }
 }
 
