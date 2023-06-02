@@ -346,7 +346,7 @@ nav ul li a:hover {
         font-size: 20px;
         width: 35px;
         height: 35px;
-        line-height: 35px;
+        line-height: 40px;
         border-radius: 50%;
     }
 
@@ -561,10 +561,41 @@ footer {
     padding: 20px;
 }
 
-/* Page background color */
-/*body {
-    background-color: #ffffff;
-}*/
+/*Member info*/
+.member {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.contact {
+    display: flex;
+    gap: 15px;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/*---------------------------------------------------------*/
 
 /* Navigation links hover color */
 nav a:hover {
