@@ -52,7 +52,7 @@ function getPacmanDirectionClass() {
     renders the pacman Matrix on the display 
 */
 function renderState() {
-    const wallChar = ''; // The character used to represent the walls
+    //const wallChar = ''; // The character used to represent the walls
     const dotChar = '·'; // The character used to represent dots
 
     let output = '';
@@ -62,7 +62,7 @@ function renderState() {
         for (let colIndex = 0; colIndex < rowValues.length; colIndex++) {
             let glyph, value = rowValues[colIndex];
             switch (value) {
-                case 'PacMan': // Not triggering...
+                case 'PacMan':
                     glyph = `<span class="mrPacMan ${getPacmanDirectionClass()}"><img src="pacman.png"></span>`;
                     break;
                 case 'Blinky':
@@ -74,20 +74,31 @@ function renderState() {
                 case 'Inky':
                     glyph = `<span class="msInky"><img src="inky.png"></span>`;
                     break;
-                /*case '#':
-                  glyph = `<span class="wall">${wallChar}</span>`;
-                  break;*/
+                case '#':
+                    glyph = '<canvas class="walls"></canvas>';
+                    break;
                 case '.':
                     glyph = `<span class="dot">${dotChar}</span>`;
                     break;
-                default:
-                    glyph = value;
+                default: glyph = value;
             }
             output += glyph;
         }
         output += '</div>';
     }
     document.querySelector('#display').innerHTML = output;
+    adjustCanvasSize();
+}
+
+function adjustCanvasSize() {
+    const canvasElements = document.querySelectorAll('canvas.walls');
+    canvasElements.forEach(canvas => {
+        const parentDiv = canvas.parentElement;
+        const parentDivWidth = parentDiv.offsetWidth;
+        const parentDivHeight = parentDiv.offsetHeight;
+        canvas.width = parentDivWidth;
+        canvas.height = parentDivHeight;
+    });
 }
 
 function isNextMoveValid(targetX, targetY) {
@@ -149,7 +160,7 @@ function movePacman() {
 
     if (isNextMoveValid(nx, ny)) {
         movePacmanOnMatrix(nx, ny, () => {
-            if (pendingMove) { // likely this is an always true if check, debug and find out...
+            if (pendingMove) {
                 pacmanDx = pendingMove.destX;
                 pacmanDy = pendingMove.destY;
                 pendingMove = null;
@@ -164,52 +175,6 @@ function movePacman() {
         }
     }
 
-    // const destValue = pacmanMatrix[ny][nx];
-    // if (destValue !== '#' && destValue !== '-') {//good to go(no wall here)
-    //     if (destValue === '.') {
-    //         // Increment the dot count
-    //         dotCount++;
-    //         // Update the dot count in monitor 
-    //         var dotCountElement = document.getElementById('dot-count');
-    //         dotCountElement.innerHTML = 'Points: ' + dotCount;
-
-    //         // Play the sound effect
-    //         var audio = new Audio('Fruit.mp3');
-    //         audio.play();
-    //     }
-
-    //     // execute the pending move
-    //     if (pendingMove) {
-    //         pacmanDx = pendingMove.destX;
-    //         pacmanDy = pendingMove.destY;
-    //         pendingMove = null;
-    //     }
-
-    //     pacmanMatrix[pacmanY][pacmanX] = ' ';//leave behind us an empty block
-    //     pacmanX = nx; pacmanY = ny;
-    //     pacmanMatrix[pacmanY][pacmanX] = '<img src="pacman.png">';//now let's place Pacman to the new position
-    // } else {
-    //     nx = pacmanX + pacmanDx; //nx is the desired column index
-    //     ny = pacmanY + pacmanDy; //ny is the desired row index
-    //     const backupDestValue = pacmanMatrix[ny][nx];
-    //     if (backupDestValue !== '#' && backupDestValue !== '-') {//good to go(no wall here)
-    //         if (backupDestValue === '.') {
-    //             // Increment the dot count
-    //             dotCount++;
-    //             // Update the dot count in monitor 
-    //             var dotCountElement = document.getElementById('dot-count');
-    //             dotCountElement.innerHTML = 'Points: ' + dotCount;
-
-    //             // Play the sound effect
-    //             var audio = new Audio('Fruit.mp3');
-    //             audio.play();
-    //         }
-
-    //         pacmanMatrix[pacmanY][pacmanX] = ' ';//leave behind us an empty block
-    //         pacmanX = nx; pacmanY = ny;
-    //         pacmanMatrix[pacmanY][pacmanX] = '<img src="pacman.png">';//now let's place Pacman to the new position
-    //     } 
-    // }
 }
 
 

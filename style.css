@@ -42,6 +42,11 @@ header {
 /*Padding after the paragraph*/
 p {
     margin-bottom: 10px;
+    text-align: left;
+}
+
+#footer_text{
+text-align: center;
 }
 
 li {
@@ -509,6 +514,7 @@ main {
 
 .container {
     max-width: 100%;
+    text-align: center!important;
 }
 
 h2 {
@@ -577,8 +583,6 @@ h1 {
 p {
     font-size: 16px;
     margin-bottom: 10px;
-    display: flex;
-    align-items: center;
 }
 
 .contact {

@@ -11,11 +11,11 @@ body {
 /*Matrix of the game*/
 #display {
     flex: 1;
-    line-height: 1.25ch;
+    line-height: 1ch;
     white-space: pre;
     font-family: monospace;
     font-size: 2.6vw;
-    color: green;
+    color: rgb(125, 222, 55);
     text-align: center;
     height: 100%;
 }
@@ -53,14 +53,12 @@ img {
     text-shadow: 0 1px 5px #fff;
 }
 
-/*.wall {
-    display: inline-block;
-    background-color: #3e883e;
-    color: #fff;
-    border-radius: 20%;
-    width: 25px;
-    height: 25px;
-}*/
+.walls {
+    background-color: rgb(34, 34, 118);
+    width: 27.45px;
+    height: 34px;
+}
+
 
 #game-over {
     position: absolute;
@@ -69,7 +67,7 @@ img {
     transform: translate(-50%, -50%);
     font-size: 80px;
     font-weight: bold;
-    color:  #E0115F;
+    color: #E0115F;
     text-shadow: 2px 2px #000;
     z-index: 9999;
     cursor: pointer;
@@ -147,8 +145,9 @@ img {
         box-shadow: 0 0 10px #fff;
     }
 
-    .wall {
-        width: 15px;
+    .walls {
+        background-color: rgb(34, 34, 118);
+        width: 9.35px;
         height: 15px;
     }
 
@@ -158,10 +157,56 @@ img {
     }
 
     #display {
-        width: 100%;
-        font-size: 3vw;
-        padding: 1.5vw;
         text-align: center;
+        height: 100%;
+    }
+
+    #dot-count {
+        margin-top: 20px;
+        font-size: 20px;
+    }
+
+    #score {
+        font-size: 5vw;
+    }
+
+    #game-over {
+        font-size: 50px;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    body {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #monitor {
+        width: 25%;
+        height: 80px;
+        margin-bottom: 20px;
+        font-size: 16px;
+        padding: 10px;
+        border: 1px solid #fff;
+        box-shadow: 0 0 10px #fff;
+    }
+
+    .walls {
+        background-color: rgb(34, 34, 118);
+        width: 9.35px;
+        height: 15px;
+    }
+
+    img {
+        width: 11px;
+        height: auto;
+    }
+
+    #display {
+        text-align: center;
+        height: 100%;
+
     }
 
     #dot-count {
@@ -175,6 +220,265 @@ img {
 
     #game-over {
         font-size: 60px;
-        /* Adjust the font size as desired */
     }
 }
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    body {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #monitor {
+        width: 25%;
+        height: 80px;
+        margin-bottom: 20px;
+        font-size: 16px;
+        padding: 10px;
+        border: 1px solid #fff;
+        box-shadow: 0 0 10px #fff;
+    }
+
+    .walls {
+        background-color: rgb(34, 34, 118);
+        width: 13.45px;
+        height: 18px;
+    }
+
+    img {
+        width: 11px;
+        height: auto;
+    }
+
+    #display {
+        text-align: center;
+        height: 100%;
+
+    }
+
+    #dot-count {
+        margin-top: 20px;
+        font-size: 20px;
+    }
+
+    #score {
+        font-size: 5vw;
+    }
+
+    #game-over {
+        font-size: 60px;
+    }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1399px) {
+    body {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
+        background-color: #1c1c1c;
+        color: #fff;
+        overflow: hidden;
+    }
+
+    #monitor {
+        width: 25%;
+        height: 100px;
+        margin-bottom: 20px;
+        font-size: 16px;
+        padding: 10px;
+        border: 1px solid #fff;
+        box-shadow: 0 0 10px #fff;
+    }
+
+    .walls {
+        background-color: rgb(34, 34, 118);
+        width: 17.65px;
+        height: 28px;
+    }
+
+    img {
+        width: 1.4vw;
+        height: 1.4vw;
+    }
+
+    #display {
+        text-align: center;
+        height: 100%;
+        margin-left: -150px;
+    }
+
+    #dot-count {
+        margin-top: 3vw;
+        font-size: 2vw;
+        font-weight: bold;
+        text-shadow: 0 2px 3px #ffffff;
+        color: rgba(0, 255, 89, 0.947);
+    }
+
+    #score {
+        font-size: 3vw;
+        font-weight: bold;
+        text-shadow: 0 1px 5px #fff;
+    }
+
+    #game-over {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 60px;
+        font-weight: bold;
+        color: #E0115F;
+        text-shadow: 2px 2px #000;
+        z-index: 9999;
+        cursor: pointer;
+        /* Initial hidden state */
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+    }
+}
+
+@media screen and (min-width: 1300px) and (max-width: 1399px) {
+    body {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
+        background-color: #1c1c1c;
+        color: #fff;
+        overflow: hidden;
+    }
+
+    #monitor {
+        width: 25%;
+        height: 120px;
+        margin-bottom: 20px;
+        font-size: 16px;
+        padding: 10px;
+        border: 1px solid #fff;
+        box-shadow: 0 0 10px #fff;
+    }
+
+    .walls {
+        background-color: rgb(34, 34, 118);
+        width: 19.5px;
+        height: 28px;
+    }
+
+    img {
+        width: 1.4vw;
+        height: 1.4vw;
+    }
+
+    #display {
+        text-align: center;
+        height: 100%;
+        margin-left: -150px;
+    }
+
+    #dot-count {
+        margin-top: 3vw;
+        font-size: 2vw;
+        font-weight: bold;
+        text-shadow: 0 2px 3px #ffffff;
+        color: rgba(0, 255, 89, 0.947);
+    }
+
+    #score {
+        font-size: 3vw;
+        font-weight: bold;
+        text-shadow: 0 1px 5px #fff;
+    }
+
+    #game-over {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 50px;
+        font-weight: bold;
+        color: #E0115F;
+        text-shadow: 2px 2px #000;
+        z-index: 9999;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+    }
+}
+
+@media screen and (min-width: 1400px) and (max-width: 1599px) {
+    body {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
+        background-color: #1c1c1c;
+        color: #fff;
+        overflow: hidden;
+    }
+
+    #monitor {
+        width: 25%;
+        height: 120px;
+        margin-bottom: 20px;
+        font-size: 16px;
+        padding: 10px;
+        border: 1px solid #fff;
+        box-shadow: 0 0 10px #fff;
+    }
+
+    .walls {
+        background-color: rgb(34, 34, 118);
+        width: 20.33px;
+        height: 28px;
+    }
+
+    img {
+        width: 1.4vw;
+        height: 1.4vw;
+    }
+
+    #display {
+        text-align: center;
+        height: 100%;
+        margin-left: -250px;
+    }
+
+    #dot-count {
+        margin-top: 3vw;
+        font-size: 2vw;
+        font-weight: bold;
+        text-shadow: 0 2px 3px #ffffff;
+        color: rgba(0, 255, 89, 0.947);
+    }
+
+    #score {
+        font-size: 3vw;
+        font-weight: bold;
+        text-shadow: 0 1px 5px #fff;
+    }
+
+    #game-over {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 60px;
+        font-weight: bold;
+        color: #E0115F;
+        text-shadow: 2px 2px #000;
+        z-index: 9999;
+        cursor: pointer;
+        /* Initial hidden state */
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+    }
+}
+
+@media screen and (min-width: 1600px) and (max-width: 1799px) {}
+
+@media screen and (min-width: 1800px) and (max-width: 1919px) {}
+
+@media screen and (min-width: 1920px) {}

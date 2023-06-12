@@ -7,6 +7,10 @@ const startButton = document.querySelector('#start');
 const stopButton = document.querySelector('#stop');
 const minutesInput = document.querySelector('#minutes');
 const secondsInput = document.querySelector('#seconds');
+const incrementMinutesButton = document.getElementById("incrementMinutes");
+const decrementMinutesButton = document.getElementById("decrementMinutes");
+const incrementSecondsButton = document.getElementById("incrementSeconds");
+const decrementSecondsButton = document.getElementById("decrementSeconds");
 
 const w400Button = document.querySelector('#w400');
 const w600Button = document.querySelector('#w600');
@@ -16,6 +20,11 @@ const chickenButton = document.querySelector('#chicken');
 const pizzaButton = document.querySelector('#pizza');
 const regularButton = document.querySelector('#regular');
 
+incrementMinutesButton.addEventListener('click', incrementMinutes);
+decrementMinutesButton.addEventListener('click', decrementMinutes);
+incrementSecondsButton.addEventListener('click', incrementSeconds);
+decrementSecondsButton.addEventListener('click', decrementSeconds);
+
 let countdown;
 let number = 0;
 let wattOption = '';
@@ -23,6 +32,39 @@ let mealOption = '';
 let timeSelected = false;
 let wattsSelected = false;
 let usingOven = false;
+
+function incrementMinutes() {
+  let minutes = parseInt(minutesInput.value);
+  if (minutes < 59) {
+    minutes++;
+  }
+  minutesInput.value = minutes;
+}
+
+function decrementMinutes() {
+  let minutes = parseInt(minutesInput.value);
+  if (minutes > 0) {
+    minutes--;
+  }
+  minutesInput.value = minutes;
+}
+
+function incrementSeconds() {
+  let seconds = parseInt(secondsInput.value);
+  if (seconds < 59) {
+    seconds++;
+  }
+  secondsInput.value = seconds;
+}
+
+function decrementSeconds() {
+  let seconds = parseInt(secondsInput.value);
+  if (seconds > 0) {
+    seconds--;
+  }
+  secondsInput.value = seconds;
+}
+
 
 function timer(seconds) {
   clearInterval(countdown);
