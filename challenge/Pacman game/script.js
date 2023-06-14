@@ -177,17 +177,9 @@ function movePacman() {
 
 }
 
-
-
-
 //function makeGhostMoveAI(symbol) {
 //Ghost
 var ghostX = (cColCount / 2) | 0, ghostY = (cRowCount / 2) | 0, ghostDx = 0, ghostDy = -1, ghostLeaveBehind = '-', ghostStepCount = 0;
-// function createGhosts() {
-//     moveGhost('Blinky', 'blinky.png'); // Move Blinky ghost with the image 'blinky.png'
-//     moveGhost('Pinky', 'pinky.png'); // Move Pinky ghost with the image 'pinky.png'
-//     moveGhost('Inky', 'inky.png'); // Move Inky ghost with the image 'inky.png'
-// }
 
 function moveGhost(symbol) {
     let nx = ghostX + ghostDx; //nx is the desired column index
@@ -195,10 +187,9 @@ function moveGhost(symbol) {
 
     if (nx >= cColCount) {
         nx = 0;//teleport from right to left
-    } else
-        if (nx < 0) {
-            nx = cColCount - 1;//teleport from left to right
-        };
+    } else if (nx < 0) {
+        nx = cColCount - 1;//teleport from left to right
+    };
     if (ny >= cRowCount) {
         ny = 0;//teleport from bottom to top
     } else
@@ -227,10 +218,13 @@ function moveGhost(symbol) {
             message.classList.add("active"); // Add the "active" class to display the message and start the blinking effect
             message.addEventListener("click", restartGame);
             new Audio('Death.mp3').play(); // Play the Death.mp3 sound
+        } else if (ghostDx === pacmanDx && ghostDy === pacmanDy && nx === pacmanX && ny === pacmanY) {
+            // Player loses when the pacman and ghost are moving in the same direction and collide
+            gameOver = true;
+            message.classList.add("active"); // Add the "active" class to display the message and start the blinking effect
+            message.addEventListener("click", restartGame);
+            new Audio('Death.mp3').play(); // Play the Death.mp3 sound
         }
-
-
-
 
     } else {//blinky can not move to the desired position			
         ghostChangeDirection();//better change direction, what we are doing lead us on a wall!
@@ -289,6 +283,200 @@ function ghostFollowPacmanIfPossible() {
 //moveGhost();
 //}
 
+// Second Ghost
+var ghost2X = (cColCount / 2) | 0, ghost2Y = (cRowCount / 2) | 0, ghost2Dx = 0, ghost2Dy = -1, ghost2LeaveBehind = '-', ghost2StepCount = 0;
+
+function moveGhost2(symbol) {
+    let nx = ghost2X + ghost2Dx; // nx is the desired column index
+    let ny = ghost2Y + ghost2Dy; // ny is the desired row index
+
+    if (nx >= cColCount) {
+        nx = 0; // teleport from right to left
+    } else if (nx < 0) {
+        nx = cColCount - 1; // teleport from left to right
+    }
+    if (ny >= cRowCount) {
+        ny = 0; // teleport from bottom to top
+    } else if (ny < 0) {
+        ny = cRowCount - 1; // teleport from top to bottom
+    }
+
+    const destValue = pacmanMatrix[ny][nx];
+
+    if (destValue != '#') {
+        // Good to go
+        ghost2StepCount++;
+        if (ghost2StepCount % 10 <= 1) {
+            // Skip 2 out of 10 steps
+            return;
+        }
+
+        pacmanMatrix[ghost2Y][ghost2X] = ghost2LeaveBehind;
+        ghost2Y = ny;
+        ghost2X = nx;
+        ghost2LeaveBehind = pacmanMatrix[ghost2Y][ghost2X] == '.' ? '.' : pacmanMatrix[ghost2Y][ghost2X] == '-' ? '-' : ' ';
+
+        pacmanMatrix[ghost2Y][ghost2X] = symbol;
+
+        // Get the "Game Over" message element
+        const message = document.getElementById('game-over');
+
+        if (ghost2X === pacmanX && ghost2Y === pacmanY) {
+            gameOver = true;
+            message.classList.add('active');
+            message.addEventListener('click', restartGame);
+            new Audio('Death.mp3').play();
+        } else if (ghost2Dx === pacmanDx && ghost2Dy === pacmanDy && nx === pacmanX && ny === pacmanY) {
+            gameOver = true;
+            message.classList.add('active');
+            message.addEventListener('click', restartGame);
+            new Audio('Death.mp3').play();
+        }
+    } else {
+        ghostChangeDirection2();
+    }
+
+    if (Math.random() < 0.95) {
+        ghostFollowPacmanIfPossible2();
+    }
+}
+
+function ghostChangeDirection2() {
+    if (ghost2Dx) {
+        ghost2Dx = 0;
+        ghost2Dy = Math.random() < 0.5 ? -1 : 1;
+    } else if (ghost2Dy) {
+        ghost2Dy = 0;
+        ghost2Dx = Math.random() < 0.5 ? -1 : 1;
+    }
+}
+
+function ghostCanSeePacman2(lookDirX, lookDirY) {
+    for (let lookX = ghost2X, lookY = ghost2Y; isPointInPacmanMatrix(lookX, lookY); lookX += lookDirX, lookY += lookDirY) {
+        const value = pacmanMatrix[lookY][lookX];
+        if (value == '#') {
+            return false;
+        }
+        if (value.includes('pacman.png')) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function ghostFollowPacmanIfPossible2() {
+    if (ghostCanSeePacman2(1, 0)) {
+        ghost2Dx = 1;
+        ghost2Dy = 0;
+    } else if (ghostCanSeePacman2(-1, 0)) {
+        ghost2Dx = -1;
+        ghost2Dy = 0;
+    } else if (ghostCanSeePacman2(0, -1)) {
+        ghost2Dx = 0;
+        ghost2Dy = -1;
+    } else if (ghostCanSeePacman2(0, 1)) {
+        ghost2Dx = 0;
+        ghost2Dy = 1;
+    }
+}
+
+// Third Ghost
+var ghost3X = (cColCount / 2) | 0, ghost3Y = (cRowCount / 2) | 0, ghost3Dx = 0, ghost3Dy = -1, ghost3LeaveBehind = '-', ghost3StepCount = 0;
+
+function moveGhost3(symbol) {
+    let nx = ghost3X + ghost3Dx; // nx is the desired column index
+    let ny = ghost3Y + ghost3Dy; // ny is the desired row index
+
+    if (nx >= cColCount) {
+        nx = 0; // teleport from right to left
+    } else if (nx < 0) {
+        nx = cColCount - 1; // teleport from left to right
+    }
+    if (ny >= cRowCount) {
+        ny = 0; // teleport from bottom to top
+    } else if (ny < 0) {
+        ny = cRowCount - 1; // teleport from top to bottom
+    }
+
+    const destValue = pacmanMatrix[ny][nx];
+
+    if (destValue != '#') {
+        // Good to go
+        ghost3StepCount++;
+        if (ghost3StepCount % 10 <= 1) {
+            // Skip 2 out of 10 steps
+            return;
+        }
+
+        pacmanMatrix[ghost3Y][ghost3X] = ghost3LeaveBehind;
+        ghost3Y = ny;
+        ghost3X = nx;
+        ghost3LeaveBehind = pacmanMatrix[ghost3Y][ghost3X] == '.' ? '.' : pacmanMatrix[ghost3Y][ghost3X] == '-' ? '-' : ' ';
+
+        pacmanMatrix[ghost3Y][ghost3X] = symbol;
+
+        // Get the "Game Over" message element
+        const message = document.getElementById('game-over');
+
+        if (ghost3X === pacmanX && ghost3Y === pacmanY) {
+            gameOver = true;
+            message.classList.add('active');
+            message.addEventListener('click', restartGame);
+            new Audio('Death.mp3').play();
+        } else if (ghost3Dx === pacmanDx && ghost3Dy === pacmanDy && nx === pacmanX && ny === pacmanY) {
+            gameOver = true;
+            message.classList.add('active');
+            message.addEventListener('click', restartGame);
+            new Audio('Death.mp3').play();
+        }
+    } else {
+        ghostChangeDirection3();
+    }
+
+    if (Math.random() < 0.95) {
+        ghostFollowPacmanIfPossible3();
+    }
+}
+
+function ghostChangeDirection3() {
+    if (ghost3Dx) {
+        ghost3Dx = 0;
+        ghost3Dy = Math.random() < 0.5 ? -1 : 1;
+    } else if (ghost3Dy) {
+        ghost3Dy = 0;
+        ghost3Dx = Math.random() < 0.5 ? -1 : 1;
+    }
+}
+
+function ghostCanSeePacman3(lookDirX, lookDirY) {
+    for (let lookX = ghost3X, lookY = ghost3Y; isPointInPacmanMatrix(lookX, lookY); lookX += lookDirX, lookY += lookDirY) {
+        const value = pacmanMatrix[lookY][lookX];
+        if (value == '#') {
+            return false;
+        }
+        if (value.includes('pacman.png')) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function ghostFollowPacmanIfPossible3() {
+    if (ghostCanSeePacman3(1, 0)) {
+        ghost3Dx = 1;
+        ghost3Dy = 0;
+    } else if (ghostCanSeePacman3(-1, 0)) {
+        ghost3Dx = -1;
+        ghost3Dy = 0;
+    } else if (ghostCanSeePacman3(0, -1)) {
+        ghost3Dx = 0;
+        ghost3Dy = -1;
+    } else if (ghostCanSeePacman3(0, 1)) {
+        ghost3Dx = 0;
+        ghost3Dy = 1;
+    }
+}
+
 var gamePaused = true;
 var gameOver = false;
 function updateGameState() {
@@ -306,8 +494,8 @@ function updateGameState() {
     movePacman();
     //  createGhosts();
     moveGhost('Blinky');
-    // moveGhost('Inky');
-    // moveGhost('Pinky');
+    moveGhost2('Pinky');
+    moveGhost3('Inky'); 
     renderState();
 }
 
