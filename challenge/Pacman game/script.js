@@ -200,7 +200,7 @@ function moveGhost(symbol) {
 
     if (destValue != '#') {//good to go
         ghostStepCount++;
-        if (ghostStepCount % 10 <= 1) { //skip 2 out of 10 steps
+        if (ghostStepCount % 20 <= 1) { //skip 2 out of 10 steps
             return;
         };
         pacmanMatrix[ghostY][ghostX] = ghostLeaveBehind;//now let's place blinky in her the new position

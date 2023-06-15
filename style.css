@@ -45,8 +45,8 @@ p {
     text-align: left;
 }
 
-#footer_text{
-text-align: center;
+#footer_text {
+    text-align: center;
 }
 
 li {
@@ -132,6 +132,11 @@ nav ul li a:hover {
     border: 1px solid #ccc;
     padding: 2px;
     border-radius: 3px;
+}
+
+.video {
+    width: 20%;
+    height: auto;
 }
 
 #borderedHockey {
@@ -514,7 +519,7 @@ main {
 
 .container {
     max-width: 100%;
-    text-align: center!important;
+    text-align: center !important;
 }
 
 h2 {

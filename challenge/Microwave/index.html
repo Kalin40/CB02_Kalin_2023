@@ -16,28 +16,25 @@
                 <span class="minutes">00</span>:<span class="seconds">00</span>
             </div>
             <div class="preferences">
-                <label for="minutes">Minutes:</label>
-                <button id="incrementMinutes">+</button>
-                <input type="number" id="minutes" min="0" max="60" value="0">
-                <button id="decrementMinutes">-</button>
-                <label for="seconds">Seconds:</label>
-                <button id="incrementSeconds">+</button>
-                <input type="number" id="seconds" min="0" max="59" value="0">
-                <button id="decrementSeconds">-</button>
-              </div>
+                <div class="input-group">
+                    <label for="minutes">Minutes:</label>
+                    <button id="decrementMinutes">-</button>
+                    <input type="number" id="minutes" min="0" max="60" value="0">
+                    <button id="incrementMinutes">+</button>
+                </div>
+                <div class="input-group">
+                    <label for="seconds">Seconds:</label>
+                    <button id="decrementSeconds">-</button>
+                    <input type="number" id="seconds" min="0" max="59" value="0">
+                    <button id="incrementSeconds">+</button>
+                </div>
+            </div>
         </div>
         <div class="watts">
             <p>Watts:</p>
             <button id="w400">400W</button>
             <button id="w600">600W</button>
             <button id="w900">900W</button>
-        </div>
-        <h1>Oven</h1>
-        <div class="Temperature">
-            <p>Temperature:</p>
-            <button id="minus">-</button>
-            <span id="temperature">0 </span>°C</h2>
-            <button id="plus">+</button>
         </div>
         <div class="meals">
             <p>Meals:</p>

@@ -145,12 +145,12 @@ img {
 
     .walls {
         background-color: rgb(34, 34, 118);
-        width: 9.35px;
-        height: 15px;
+        width: 1.43vw;
+        height: 2vw;
     }
 
     img {
-        width: 11px;
+        width: 1.4vh;
         height: auto;
     }
 
@@ -169,7 +169,7 @@ img {
     }
 
     #game-over {
-        font-size: 50px;
+        font-size: 3vh;
     }
 }
 
@@ -197,7 +197,7 @@ img {
     }
 
     img {
-        width: 11px;
+        width: 1.6vh;
         height: auto;
     }
 
@@ -217,7 +217,7 @@ img {
     }
 
     #game-over {
-        font-size: 60px;
+        font-size: 3vh;
     }
 }
 
@@ -241,11 +241,11 @@ img {
     .walls {
         background-color: rgb(34, 34, 118);
         width: 1.43vw;
-        height: 2.5vw;
+        height: 2.3vw;
     }
 
     img {
-        width: 11px;
+        width: 1.8vh;
         height: auto;
     }
 
@@ -265,7 +265,6 @@ img {
     }
 
     #game-over {
-        font-size: 60px;
+        font-size: 5vh;
     }
 }
-

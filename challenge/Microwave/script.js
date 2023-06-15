@@ -2,7 +2,6 @@ const display = document.querySelector('.timing');
 const interior = document.querySelector('.interior');
 const plusButton = document.getElementById("plus");
 const minusButton = document.getElementById("minus");
-const numberSpan = document.getElementById("temperature");
 const startButton = document.querySelector('#start');
 const stopButton = document.querySelector('#stop');
 const minutesInput = document.querySelector('#minutes');
@@ -178,29 +177,7 @@ w900Button.addEventListener('click', () => {
   }
 });
 
-minusButton.addEventListener('click', () => {
-  if (!timeSelected && !usingOven) {
-    if (number > 0) {
-      number -= 15;
-      if (number < 0) {
-        number = 0;
-      }
-      numberSpan.innerText = number;
-    }
-  }
-});
 
-plusButton.addEventListener('click', () => {
-  if (!timeSelected && !usingOven) {
-    if (number < 280) {
-      number += 15;
-      if (number > 280) {
-        number = 280;
-      }
-      numberSpan.innerText = number;
-    }
-  }
-});
 
 chickenButton.addEventListener('click', () => {
   if (startButton.disabled) {
