@@ -166,7 +166,7 @@
                     <h2>What did we learned</h2>
                     <p>Short recap what we did at the weeks:</p>
                     <ul>
-                        <li>This is the main subject where we build our selves. Here we have a lecture every week
+                        <p>This is the main subject where we build our selves. Here we have a lecture every week
                             about something new, so we build new knowledge every time. We started from html and css and
                             we
                             were not allowed to use js. First week we were making simple navigation bar. Second week
@@ -179,7 +179,7 @@
                             the
                             color with js. Week 5 we were goinf deeper with JS, such as: JS types, the differences
                             between var let and const, interesting peculiarities of logical operators and The way
-                            arithmetic operators behave when their operands are not numbers </li>
+                            arithmetic operators behave when their operands are not numbers </p>
                     </ul>
                 </div>
             </section>
@@ -188,13 +188,13 @@
                 <div class="container">
                     <h2>JavaScript types:</h2>
                     <ul>
-                        <li>JavaScript has six primitive data types: string, number, boolean, null, undefined, and
+                        <p>JavaScript has six primitive data types: string, number, boolean, null, undefined, and
                             symbol. Objects in JavaScript are not considered a primitive data type. Instead, they are
                             complex data types that can hold multiple values of different types. JavaScript uses type
                             coercion, which means that it will automatically convert data types if necessary. For
                             example, if you try to add a string and a number together, JavaScript will convert the
                             number to a string and concatenate them. Type checking in JavaScript can be done using the
-                            typeof operator, which returns a string indicating the type of the operand.</li>
+                            typeof operator, which returns a string indicating the type of the operand.</p>
                     </ul>
                 </div>
             </section>
@@ -203,16 +203,16 @@
                 <div class="container">
                     <h2>var let and const:</h2>
                     <ul>
-                        <li>Var has function scope, while let and const have block scope. This means that variables
+                        <p>Var has function scope, while let and const have block scope. This means that variables
                             declared with var are accessible throughout the entire function, while variables declared
                             with let and const are only accessible within the block they are declared in (e.g. within a
                             loop, if statement, or curly braces). Var can be redeclared and reassigned, while let can be
-                            reassigned but not redeclared, and const can neither be reassigned nor redeclared. </li>
-                        <li>In general, it's best to use let and const over var in modern JavaScript code, as they
+                            reassigned but not redeclared, and const can neither be reassigned nor redeclared. </p>
+                        <p>In general, it's best to use let and const over var in modern JavaScript code, as they
                             provide better scoping and are more in line with the principle of immutability (i.e. not
                             changing values once they are assigned). However, there may be cases where var is still
                             useful, particularly in legacy code or when writing scripts that need to be compatible with
-                            older browsers.</li>
+                            older browsers.</p>
                     </ul>
                 </div>
             </section>
@@ -221,12 +221,12 @@
                 <div class="container">
                     <h2>New for JS</h2>
                     <ul>
-                        <li>Arrow functions are a shorthand syntax for creating functions in JavaScript. They can be
+                        <p>Arrow functions are a shorthand syntax for creating functions in JavaScript. They can be
                             used as callback functions in combination with iterative Array methods such as forEach, map,
                             filter, find, reduce, etc.
-                        </li>
+                        </p>
 
-                        <li>
+                        <p>
                             Using arrow functions as callback functions makes the code more concise and easier to
                             read.<br>
                             For example, instead of writing:<br>
@@ -238,8 +238,8 @@
                             numbers.forEach((number) => {<br>
                             console.log(number);<br>
                             });<br>
-                        </li>
-                        <li>
+                        </p>
+                        <p>
                             The Array methods such as sort, slice, splice, push, pop, etc. are used for manipulating
                             arrays in JavaScript.<br>
                             • sort: used to sort the elements of an array in place.<br>
@@ -249,7 +249,7 @@
                             • pop: used to remove the last element of an array.<br>
                             By understanding these concepts and methods, we can write more efficient and concise code
                             when working with arrays in JavaScript.
-                        </li>
+                        </p>
                     </ul>
                 </div>
             </section>
@@ -258,14 +258,14 @@
                 <div class="container">
                     <h2>&& , || , and ! </h2>
                     <ul>
-                        <li>The && operator returns the first falsy value it encounters, or the last truthy value. If
+                        <p>The && operator returns the first falsy value it encounters, or the last truthy value. If
                             all values are truthy, it returns the last value. For example, 0 && "hello" && false will
-                            return 0, while "hello" && true && 42 will return 42. </li>
-                        <li>The || operator returns the first truthy value it encounters, or the last falsy value. If
+                            return 0, while "hello" && true && 42 will return 42. </p>
+                        <p>The || operator returns the first truthy value it encounters, or the last falsy value. If
                             all values are falsy, it returns the last value. For example, null || false || undefined
-                            will return undefined, while "hello" || true || 42 will return "hello".</li>
-                        <li>The ! operator is a unary operator that negates a boolean value. If the value is truthy, it
-                            returns false, and if the value is falsy, it returns true.</li>
+                            will return undefined, while "hello" || true || 42 will return "hello".</p>
+                        <p>The ! operator is a unary operator that negates a boolean value. If the value is truthy, it
+                            returns false, and if the value is falsy, it returns true.</p>
                     </ul>
                 </div>
             </section>
@@ -274,14 +274,14 @@
                 <div class="container">
                     <h2>&& , || , and ! behaving with !numbers </h2>
                     <ul>
-                        <li>The + operator: If one or both operands are strings, the + operator will perform string
+                        <p>The + operator: If one or both operands are strings, the + operator will perform string
                             concatenation instead of addition. For example, 5 + "5" will result in the string "55". If
                             one operand is a string and the other operand is not a string, the non-string operand will
-                            be coerced into a string before the concatenation takes place.</li>
-                        <li>The -, *, /, and % operators: If one or both operands are not numbers, JavaScript will
+                            be coerced into a string before the concatenation takes place.</p>
+                        <p>The -, *, /, and % operators: If one or both operands are not numbers, JavaScript will
                             attempt to convert them to numbers before performing the operation. If the conversion is not
                             possible, the operation will return NaN (Not a Number). For example, "5" - 2 will result in
-                            the number 3.</li>
+                            the number 3.</p>
                     </ul>
                 </div>
             </section>
@@ -290,20 +290,20 @@
                 <div class="container">
                     <h2>== , === , != , and !== </h2>
                     <ul>
-                        <li>== (loose equality operator) - It checks if the two values are equal in value, but not
+                        <p>== (loose equality operator) - It checks if the two values are equal in value, but not
                             necessarily in type. If the types are different, JavaScript will attempt to convert one or
                             both values to a common type before making the comparison. For example, 1 == "1" would
-                            return true</li>
-                        <li>=== (strict equality operator) - It checks if the two values are equal in both value and
+                            return true</p>
+                        <p>=== (strict equality operator) - It checks if the two values are equal in both value and
                             type. If the types are different, the comparison will return false. For example, 1 === "1"
-                            would return false because the types are different.</li>
-                        <li>!= (not equal operator) - It checks if the two values are not equal in value, but not
+                            would return false because the types are different.</p>
+                        <p>!= (not equal operator) - It checks if the two values are not equal in value, but not
                             necessarily in type. If the types are different, JavaScript will attempt to convert one or
                             both values to a common type before making the comparison. For example, 1 != "2" would
-                            return true because the values are different.</li>
-                        <li>!== (strict not equal operator) - It checks if the two values are not equal in both value
+                            return true because the values are different.</p>
+                        <p>!== (strict not equal operator) - It checks if the two values are not equal in both value
                             and type. If the types are different, the comparison will return true. For example, 1 !==
-                            "2" would return true because the types are different.</li>
+                            "2" would return true because the types are different.</p>
                     </ul>
                 </div>
             </section>

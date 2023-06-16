@@ -133,5 +133,31 @@ function closeCalculator() {
 }
 
 
+/*Arrow*/
+const container = document.querySelector('.container');
+const leftArrowOverlay = document.querySelector('.left-arrow-overlay');
+const rightArrowOverlay = document.querySelector('.right-arrow-overlay');
+
+container.addEventListener('mousemove', handleMouseMove);
+container.addEventListener('mouseleave', resetArrowPositions);
+
+function handleMouseMove(event) {
+    const containerWidth = container.offsetWidth;
+    const mouseX = event.pageX - container.offsetLeft;
+    const percentage = mouseX / containerWidth;
+
+    const leftArrowPosition = -20 * percentage;
+    const rightArrowPosition = 100 - 20 * percentage;
+
+    leftArrowOverlay.style.left = `${leftArrowPosition}%`;
+    rightArrowOverlay.style.left = `${rightArrowPosition}%`;
+}
+
+function resetArrowPositions() {
+    leftArrowOverlay.style.left = '-20%';
+    rightArrowOverlay.style.left = '100%';
+}
+
+
 
 

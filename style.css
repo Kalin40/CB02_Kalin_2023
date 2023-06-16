@@ -563,15 +563,17 @@ img {
     width: 34px;
     height: 24px;
     background-size: cover;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .left-arrow-overlay {
-    left: 10%;
-    transform: rotate(-90deg);
+    left: 0;
+    transform: rotate(90deg);
 }
 
 .right-arrow-overlay {
-    right: 10%;
+    right: 0;
     transform: rotate(90deg);
 }
 
@@ -584,6 +586,45 @@ img {
     border-bottom: 2px solid #000;
     transform: rotate(45deg);
 }
+
+.images-container:hover .arrow-overlay {
+    opacity: 1;
+}
+
+.images-container:hover .arrow-overlay.left-arrow-overlay {
+    animation: moveLeftArrow 1s infinite alternate;
+}
+
+.images-container:hover .arrow-overlay.right-arrow-overlay {
+    animation: moveRightArrow 1s infinite alternate;
+}
+
+@keyframes moveLeftArrow {
+    0% {
+        left: -40px;
+        transform: rotate(0deg);
+    }
+
+    100% {
+        left: calc(45% - 20px);
+        transform: rotate(-90deg);
+    }
+}
+
+@keyframes moveRightArrow {
+    0% {
+        right: -40px;
+        transform: rotate(0deg);
+    }
+
+    100% {
+        right: calc(40% - 20px);
+        transform: rotate(90deg);
+    }
+}
+
+
+
 
 ul {
     list-style: none;
